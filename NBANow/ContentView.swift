@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  NBANow
-//
-//  Created by alumne on 12/01/2026.
-//
-
 import SwiftUI
 import CoreData
 
