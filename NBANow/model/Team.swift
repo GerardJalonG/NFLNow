@@ -16,28 +16,30 @@ struct Team: Codable {
     let color: String
     let alternateColor: String
     //let logos: Logo?
-    //let record Para Despues
-    //groups ver si es WCOAST
     let franchise: Franchise
-    let record: NextEvent
+    let record: Record
+    let standingSummary: String
 }
 
 struct Franchise: Codable {
     let id: String
     let fullName: String
-    let address: Address?
-}
-
-
-struct NextEventResponse: Codable {
-    let nextEvent: NextEvent
-}
-
-struct NextEvent: Codable, Identifiable {
-    let id: String
-    let date: String
     let venue: Venue
-    let competitions: [Competition]
+}
+
+struct Record: Codable {
+    let items: [RecordItem]
+}
+
+struct RecordItem: Codable {
+    let type: String
+    let summary: String
+    let stats: [RecordStat]
+}
+
+struct RecordStat: Codable {
+    let name: String
+    let value: Double
 }
 
 struct Venue: Codable {
@@ -49,23 +51,3 @@ struct Address: Codable {
     let city: String
     let state: String
 }
-
-struct Competition: Codable {
-    let id: String
-    let date: String
-    let competitors: [Competitors]
-    
-}
-
-struct Competitors: Codable {
-    let id: String
-    let homeAway: String //Para saber donde colocar o bien izq. o der.
-    let team: Team
-    let score: ScoreInfo?
-}
-
-struct ScoreInfo: Codable {
-    let value: Int
-}
-
-//Standing SUmmary si no tenemos posicion en conference

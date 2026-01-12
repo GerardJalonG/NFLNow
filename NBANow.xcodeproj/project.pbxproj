@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF82B8472F1541F000AA058C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B8462F1541F000AA058C /* Team.swift */; };
+		EF82B84C2F15557900AA058C /* Roster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B84B2F15557900AA058C /* Roster.swift */; };
 		EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF90EC12F153F7100E1F807 /* NBANowApp.swift */; };
 		EFF90EC42F153F7100E1F807 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF90EC32F153F7100E1F807 /* ContentView.swift */; };
 		EFF90EC62F153F7400E1F807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF90EC52F153F7400E1F807 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		EF82B8462F1541F000AA058C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		EF82B84B2F15557900AA058C /* Roster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roster.swift; sourceTree = "<group>"; };
 		EFF90EBE2F153F7100E1F807 /* NBANow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBANow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF90EC12F153F7100E1F807 /* NBANowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBANowApp.swift; sourceTree = "<group>"; };
 		EFF90EC32F153F7100E1F807 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				EF82B8462F1541F000AA058C /* Team.swift */,
+				EF82B84B2F15557900AA058C /* Roster.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			files = (
 				EFF90ECE2F153F7400E1F807 /* NBANow.xcdatamodeld in Sources */,
 				EFF90ECB2F153F7400E1F807 /* Persistence.swift in Sources */,
+				EF82B84C2F15557900AA058C /* Roster.swift in Sources */,
 				EFF90EC42F153F7100E1F807 /* ContentView.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
