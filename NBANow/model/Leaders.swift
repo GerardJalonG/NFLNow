@@ -1,5 +1,8 @@
 import Foundation
 
+/*
+ Recursos para el apartado de información de estadísitcas en el header (y a lo mejor body) - Player_info & Team_infop
+ */
 struct Leaders: Codable {
     let id: String
     let categories: [CategoriesItems]
