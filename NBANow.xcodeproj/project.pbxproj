@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CCC5E2F16C95A0007A09B /* APIError.swift */; };
+		BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0378B22F15AC5900304FD2 /* Leaders.swift */; };
+		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
+		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
 		EF82B8472F1541F000AA058C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B8462F1541F000AA058C /* Team.swift */; };
 		EF82B84C2F15557900AA058C /* Roster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B84B2F15557900AA058C /* Roster.swift */; };
 		EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF90EC12F153F7100E1F807 /* NBANowApp.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		692CCC5E2F16C95A0007A09B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		BF0378B22F15AC5900304FD2 /* Leaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaders.swift; sourceTree = "<group>"; };
+		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
+		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
 		EF82B8462F1541F000AA058C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		EF82B84B2F15557900AA058C /* Roster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roster.swift; sourceTree = "<group>"; };
 		EFF90EBE2F153F7100E1F807 /* NBANow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBANow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +60,9 @@
 		EF82B8452F1541DE00AA058C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				BF9766192F16AE1600E97321 /* ScoreBoard.swift */,
+				BFED317A2F16553D0089FC58 /* GameSummary.swift */,
+				BF0378B22F15AC5900304FD2 /* Leaders.swift */,
 				EF82B8462F1541F000AA058C /* Team.swift */,
 				EF82B84B2F15557900AA058C /* Roster.swift */,
 			);
@@ -169,9 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */,
 				EFF90ECE2F153F7400E1F807 /* NBANow.xcdatamodeld in Sources */,
 				EFF90ECB2F153F7400E1F807 /* Persistence.swift in Sources */,
+				BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */,
 				EF82B84C2F15557900AA058C /* Roster.swift in Sources */,
+				BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */,
 				EFF90EC42F153F7100E1F807 /* ContentView.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
