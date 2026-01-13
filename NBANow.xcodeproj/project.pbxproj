@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CCC5E2F16C95A0007A09B /* APIError.swift */; };
 		BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0378B22F15AC5900304FD2 /* Leaders.swift */; };
 		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
 		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		692CCC5E2F16C95A0007A09B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		BF0378B22F15AC5900304FD2 /* Leaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaders.swift; sourceTree = "<group>"; };
 		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		692CCC5D2F16C9440007A09B /* services */ = {
+			isa = PBXGroup;
+			children = (
+				692CCC5E2F16C95A0007A09B /* APIError.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
 		EF82B8452F1541DE00AA058C /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 		EFF90EC02F153F7100E1F807 /* NBANow */ = {
 			isa = PBXGroup;
 			children = (
+				692CCC5D2F16C9440007A09B /* services */,
 				EF82B8452F1541DE00AA058C /* model */,
 				EFF90EC12F153F7100E1F807 /* NBANowApp.swift */,
 				EFF90EC32F153F7100E1F807 /* ContentView.swift */,
@@ -176,6 +187,7 @@
 				EFF90EC42F153F7100E1F807 /* ContentView.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
+				692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
