@@ -3,7 +3,23 @@ import Foundation
 //teams: id, abbreviation, displayName, location, color, alternateColor, logos ->0 href,
 //teamDetail{id}: franchise -> venue -> fullName, nextEvent[...]
 
-struct TeamResponse: Codable {
+struct Root: Codable {
+    let sports: [Sport]
+}
+
+struct Sport: Codable {
+    let id: String
+    let slug: String
+    let leagues: [League]
+}
+
+struct League: Codable {
+    let id: String
+    let slug: String
+    let teams: [TeamContainer]
+}
+
+struct TeamContainer: Codable {
     let team: Team
 }
 
@@ -16,9 +32,9 @@ struct Team: Codable {
     let color: String
     let alternateColor: String
     //let logos: Logo?
-    let franchise: Franchise
-    let record: Record
-    let standingSummary: String
+    //let franchise: Franchise
+    //let record: Record
+    //let standingSummary: String
 }
 
 struct Franchise: Codable {
