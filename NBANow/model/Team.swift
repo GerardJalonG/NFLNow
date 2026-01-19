@@ -32,9 +32,9 @@ struct Team: Codable {
     let color: String
     let alternateColor: String
     //let logos: Logo?
-    //let franchise: Franchise
-    //let record: Record
-    //let standingSummary: String
+    var franchise: Franchise?
+    var record: Record?
+    var standingSummary: String?
 }
 
 struct Franchise: Codable {

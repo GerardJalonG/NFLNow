@@ -16,7 +16,7 @@ struct TeamsView: View {
             }
             .navigationTitle("NFL Teams")
             .onAppear {
-                viewModel.fetchIntent()
+                viewModel.fetchAllTeams()
             }
         }
     }

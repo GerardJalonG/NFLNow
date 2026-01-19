@@ -4,7 +4,7 @@ class ViewModel: ObservableObject {
     @Published private(set) var messageError: String?
     @Published private(set) var teams = [Team]()
     
-    func fetchIntent(){
+    func fetchAllTeams(){
         let apiurl = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
         NFLService.fetchTeams(urlString: apiurl){result in
             switch result {
@@ -19,4 +19,5 @@ class ViewModel: ObservableObject {
             }
         }
     }
+    
 }
