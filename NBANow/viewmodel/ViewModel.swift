@@ -12,9 +12,9 @@ class ViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.messageError = error.localizedDescription
                     }
-                case .success(let array):
+                case .success(let teams):
                     DispatchQueue.main.async {
-                        self.teams = array
+                        self.teams = teams
                     }
             }
         }
