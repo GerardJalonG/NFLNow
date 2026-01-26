@@ -31,10 +31,14 @@ struct Team: Codable {
     let location: String
     let color: String
     let alternateColor: String
-    //let logos: Logo?
+    let logos: [LogoItem]
     var franchise: Franchise?
     var record: Record?
     var standingSummary: String?
+}
+
+struct LogoItem: Codable {
+    let href: String
 }
 
 struct Franchise: Codable {
