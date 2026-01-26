@@ -53,18 +53,18 @@ struct team_info: View {
                     
                     HStack {
                         VStack (spacing: 8){
-                            stat(key: "APA", value: decimal_to_string(team.record?.items.first?.stats[2].value))
-                            stat(key: "APF", value: decimal_to_string(team.record?.items.first?.stats[3].value))
+                            stat(key: "APA", value: decimal_to_string(team.record?.items.first?.stats[safe: 2]?.value))
+                            stat(key: "APF", value: decimal_to_string(team.record?.items.first?.stats[safe: 3]?.value))
                             
-                            stat(key: "WP%", value: decimal_to_string(team.record?.items.first?.stats[18].value))
+                            stat(key: "WP%", value: decimal_to_string(team.record?.items.first?.stats[safe: 18]?.value))
                             
                         }
                         Spacer()
                         VStack (spacing: 8) {
-                            stat(key: "PAG", value:team.record?.items.first?.stats[14].value ?? "0")
-                            stat(key: "PDF", value: decimal_to_string(team.record?.items.first?.stats[12].value))
+                            stat(key: "PAG", value:team.record?.items.first?.stats[safe: 14]?.value ?? "0")
+                            stat(key: "PDF", value: decimal_to_string(team.record?.items.first?.stats[safe: 12]?.value))
                             
-                            stat(key: "PFO", value:team.record?.items.first?.stats[15].value ?? "0")
+                            stat(key: "PFO", value:team.record?.items.first?.stats[safe: 15]?.value ?? "0")
                         }
                     }
                     
@@ -82,8 +82,10 @@ struct team_info: View {
             //.navigationTitle(team.displayName)
             //.navigationBarTitleDisplayMode(.inline)
         }
+        
     }
 }
+
 
 struct team_info_Previews: PreviewProvider {
     static var previews: some View {

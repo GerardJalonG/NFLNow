@@ -27,3 +27,9 @@ extension Color {
         self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
     }
 }
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}

@@ -26,9 +26,7 @@ struct stat_Previews: PreviewProvider {
 }
 
 func decimal_to_string(_ stat: Double?) -> String {
-    if let value = stat {
-        return String(format: "%.2f", value)
-    } else {
-        return "0.00"
-    }
+    let value = stat ?? 0
+    return String(format: "%.2f", value)
 }
+

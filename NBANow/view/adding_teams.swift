@@ -16,14 +16,6 @@ struct adding_teams: View {
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
-                        Spacer()
-                        if let logoURL = team.logos.first?.href,
-                           let url = URL(string: logoURL) {
-                            KFImage(url)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                        }
                     }
                     .padding(.vertical, 4)
                 }
