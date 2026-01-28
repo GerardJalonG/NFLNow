@@ -13,6 +13,11 @@ struct player_info: View {
     
     let team: Team
     let player: Athlete
+    
+    private var playerStats: [PlayerStats] {
+        PlayerDefaultStats(player: player).stats
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -66,10 +71,35 @@ struct player_info: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("STATS").font(.title3)
                                 .fontWeight(.bold)
-                            stat(key: "APA", value: decimal_to_string(team.record?.items.first?.stats[safe: 2]?.value))
-                            stat(key: "APF", value: decimal_to_string(team.record?.items.first?.stats[safe: 3]?.value))
-                            
-                            stat(key: "WP%", value: decimal_to_string(team.record?.items.first?.stats[safe: 18]?.value))
+                            HStack {
+                                        VStack(alignment: .leading, spacing: 8) {
+
+                                            if let s0 = playerStats[safe: 0] {
+                                                stat(key: s0.key, value: s0.value)
+                                            }
+                                            if let s1 = playerStats[safe: 1] {
+                                                stat(key: s1.key, value: s1.value)
+                                            }
+                                            if let s2 = playerStats[safe: 2] {
+                                                stat(key: s2.key, value: s2.value)
+                                            }
+                                        }
+
+                                        Spacer()
+
+                                        VStack(alignment: .leading, spacing: 8) {
+
+                                            if let s3 = playerStats[safe: 3] {
+                                                stat(key: s3.key, value: s3.value)
+                                            }
+                                            if let s4 = playerStats[safe: 4] {
+                                                stat(key: s4.key, value: s4.value)
+                                            }
+                                            if let s5 = playerStats[safe: 5] {
+                                                stat(key: s5.key, value: s5.value)
+                                            }
+                                        }
+                                    }
                         }.padding(.horizontal, 16)
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
