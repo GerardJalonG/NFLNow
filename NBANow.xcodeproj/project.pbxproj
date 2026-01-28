@@ -13,6 +13,7 @@
 		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
 		BFF5B4CC2F2967C30092AD1D /* player_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CB2F2967BD0092AD1D /* player_info.swift */; };
 		BFF5B4CE2F2A0FFB0092AD1D /* info_selected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CD2F2A0FED0092AD1D /* info_selected.swift */; };
+		BFF5B4D02F2A45C20092AD1D /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CF2F2A45BC0092AD1D /* PlayerStats.swift */; };
 		EF82B8472F1541F000AA058C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B8462F1541F000AA058C /* Team.swift */; };
 		EF82B84C2F15557900AA058C /* Roster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF82B84B2F15557900AA058C /* Roster.swift */; };
 		EF9F4E0F2F1E710900D1EC5A /* NFLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F4E0E2F1E710900D1EC5A /* NFLService.swift */; };
@@ -38,6 +39,7 @@
 		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
 		BFF5B4CB2F2967BD0092AD1D /* player_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player_info.swift; sourceTree = "<group>"; };
 		BFF5B4CD2F2A0FED0092AD1D /* info_selected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = info_selected.swift; sourceTree = "<group>"; };
+		BFF5B4CF2F2A45BC0092AD1D /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		EF82B8462F1541F000AA058C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		EF82B84B2F15557900AA058C /* Roster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roster.swift; sourceTree = "<group>"; };
 		EF9F4E0E2F1E710900D1EC5A /* NFLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFLService.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		EF82B8452F1541DE00AA058C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				BFF5B4CF2F2A45BC0092AD1D /* PlayerStats.swift */,
 				BFF5B4CD2F2A0FED0092AD1D /* info_selected.swift */,
 				BF9766192F16AE1600E97321 /* ScoreBoard.swift */,
 				BFED317A2F16553D0089FC58 /* GameSummary.swift */,
@@ -233,6 +236,7 @@
 				EF9F4E0F2F1E710900D1EC5A /* NFLService.swift in Sources */,
 				EFF90ECE2F153F7400E1F807 /* NBANow.xcdatamodeld in Sources */,
 				EFF90ECB2F153F7400E1F807 /* Persistence.swift in Sources */,
+				BFF5B4D02F2A45C20092AD1D /* PlayerStats.swift in Sources */,
 				BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */,
 				EF82B84C2F15557900AA058C /* Roster.swift in Sources */,
 				BFF5B4CE2F2A0FFB0092AD1D /* info_selected.swift in Sources */,
