@@ -61,10 +61,15 @@ struct team_info: View {
                         }
                         Spacer()
                         VStack (spacing: 8) {
-                            stat(key: "PAG", value:team.record?.items.first?.stats[safe: 14]?.value ?? "0")
+                            stat(
+                                key: "PAG",
+                                value: decimal_to_string(
+                                    team.record?.items.first?.stats[safe: 14]?.value
+                                )
+                            )
                             stat(key: "PDF", value: decimal_to_string(team.record?.items.first?.stats[safe: 12]?.value))
                             
-                            stat(key: "PFO", value:team.record?.items.first?.stats[safe: 15]?.value ?? "0")
+                            stat(key: "PFO", value: decimal_to_string(team.record?.items.first?.stats[safe: 15]?.value))
                         }
                     }
                     

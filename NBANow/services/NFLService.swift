@@ -82,5 +82,37 @@ struct NFLService {
             }
         }.resume()
     }
+    
+    static func fetchTeamRoster(
+        urlString: String,id: String, completion: @escaping (Result<Roster, APIError>) -> Void)
+        {
+        
+        guard let url = URL(string: "\(urlString)/teams/\(id)/roster") else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
+            if let error = error{
+                completion(.failure(.urlSessionError(error)))
+                return
+            }
+
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(Roster.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                completion(.failure(.decodingFailed(error)))
+            }
+        }.resume()
+    }
 
 }
