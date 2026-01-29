@@ -114,5 +114,38 @@ struct NFLService {
             }
         }.resume()
     }
+    
+    static func fetchGameSummary(
+        urlString: String,
+        eventId: String,
+        completion: @escaping (Result<GameSummaryData, APIError>) -> Void
+    ) {
+        guard let url = URL(string: "\(urlString)/summary?event=\(eventId)") else {
+            completion(.failure(.invalidURL))
+            return
+        }
 
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
+            if let error = error {
+                completion(.failure(.urlSessionError(error)))
+                return
+            }
+
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(GameSummaryData.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                completion(.failure(.decodingFailed(error)))
+            }
+
+        }.resume()
+    }
 }

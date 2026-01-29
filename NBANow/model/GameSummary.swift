@@ -1,5 +1,14 @@
 import Foundation
 
+struct GameSummaryData: Codable {
+    let boxscore: boxScore?
+    let gameInfo: GameInfo?
+    let drives: Drives?
+    let leaders: [LeadersGameSummary]?
+    let injuries: [Injuries]?
+    let winprobability: [WinProbability]?
+}
+
 struct boxScore: Codable{
     let teams: [TeamStatistics]
     let players: [Player]
