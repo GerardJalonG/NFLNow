@@ -51,3 +51,35 @@ func randomGameDate() -> Date? {
         )
     )
 }
+
+func randomOpponentTeam(from teams: [Team], currentTeam: Team) -> Team {
+    let filteredTeams = teams.filter { $0.id != currentTeam.id }
+    return filteredTeams.randomElement()!
+}
+
+struct ProgressBar: View {
+    let progress: Double
+    let color: Color
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(Color.gray.opacity(0.25))
+                .frame(height: 8)
+
+            RoundedRectangle(cornerRadius: 6)
+                .fill(color)
+                .frame(
+                    width: max(0, min(progress, 1)) * 200,
+                    height: 8
+                )
+        }
+    }
+}
+
+func dateToString(_ date: Date?) -> String {
+    guard let date = date else { return "-" }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd MMM yyyy"
+    return formatter.string(from: date)
+}

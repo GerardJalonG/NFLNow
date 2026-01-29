@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CCC5E2F16C95A0007A09B /* APIError.swift */; };
 		BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0378B22F15AC5900304FD2 /* Leaders.swift */; };
+		BF3D2C022F2BB20F00FE6063 /* progress_bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */; };
 		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
 		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
 		BFF5B4CC2F2967C30092AD1D /* player_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CB2F2967BD0092AD1D /* player_info.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		692CCC5E2F16C95A0007A09B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		BF0378B22F15AC5900304FD2 /* Leaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaders.swift; sourceTree = "<group>"; };
+		BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progress_bar.swift; sourceTree = "<group>"; };
 		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
 		BFF5B4CB2F2967BD0092AD1D /* player_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player_info.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				EF9F4E1D2F1E8E8200D1EC5A /* adding_teams.swift */,
 				EF9F4E212F1E95AD00D1EC5A /* team_info.swift */,
 				EFC1518E2F27C6B200828703 /* stat.swift */,
+				BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				EF9F4E1B2F1E836500D1EC5A /* default_profile.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
+				BF3D2C022F2BB20F00FE6063 /* progress_bar.swift in Sources */,
 				EF9F4E1E2F1E8E8200D1EC5A /* adding_teams.swift in Sources */,
 				EF9F4E132F1E7C6E00D1EC5A /* ViewModel.swift in Sources */,
 				692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */,

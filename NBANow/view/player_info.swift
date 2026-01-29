@@ -11,11 +11,16 @@ import KingfisherSwiftUI
 struct player_info: View {
     @State private var section: InfoSelected = .stats
     
+    let teams: [Team]
     let team: Team
     let player: Athlete
     
     private var playerStats: [PlayerStats] {
         PlayerDefaultStats(player: player).stats
+    }
+    
+    private var topPerformances: [TopPerformanceItem] {
+        TopPerformancesStats(player: player, team: team, teams: teams).items
     }
     
     var body: some View {
@@ -100,19 +105,81 @@ struct player_info: View {
                                             }
                                         }
                                     }
+                            
+                            Divider().padding(.vertical, 10)
+
+                            Text("TOP PERFORMANCES")
+                                .font(.title3)
+                                .fontWeight(.bold)
+
+                            VStack(spacing: 12) {
+                                ForEach(topPerformances) { item in
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        HStack {
+                                            Text(item.metric)
+                                                .fontWeight(.bold)
+
+                                            Spacer()
+
+                                            if let date = item.gameDate {
+                                                Text(dateToString(date))
+                                                    .foregroundColor(.gray)
+                                                    .font(.subheadline)
+                                            }
+                                        }
+                                        HStack {
+                                            Text(item.playerName)
+                                                .fontWeight(.semibold)
+
+                                            Spacer()
+
+                                            Text(item.playerValueText)
+                                                .foregroundColor(.gray)
+                                        }
+                                        progress_bar(
+                                            progress: item.playerProgress,
+                                            color: Color(hex: item.playerColor)
+                                        )
+                                        HStack {
+                                            Text("\(item.opponentName)")
+                                                .fontWeight(.semibold)
+
+                                            Spacer()
+
+                                            Text(item.opponentValueText)
+                                                .foregroundColor(.gray)
+                                        }
+                                        progress_bar(
+                                            progress: item.opponentProgress,
+                                            color: Color(hex: item.opponentColor)
+                                        )
+                                    }
+                                    .padding(12)
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(12)
+                                }
+                            }
                         }.padding(.horizontal, 16)
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                                HStack { Text("BIOGRAPHY").bold(); Spacer() }
-
-                                stat(key: "BIRTH", value: "\(player.birthPlace.city), \(player.birthPlace.state)")
-                                stat(key: "COUNTRY", value: player.birthPlace.country)
-                                stat(key: "COLLEGE", value: player.college.name)
-                                stat(key: "MASCOT", value: player.college.mascot)
-                                stat(key: "POS", value: player.position.displayName)
+                            Text("BIOGRAPHY")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            HStack(alignment: .top) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    stat(key: "BIRTH", value: "\(player.birthPlace.city), \(player.birthPlace.state)")
+                                    stat(key: "COUNTRY", value: player.birthPlace.country)
+                                    stat(key: "COLLEGE", value: player.college.name)
+                                }
+                                Spacer()
+                                VStack(alignment: .leading, spacing: 8) {
+                                    stat(key: "MASCOT", value: player.college.mascot)
+                                    stat(key: "POS", value: player.position.displayName)
+                                }
                             }
-                            .padding(.horizontal)
-                            .padding(.top, 8)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 8)
                     }
                 }
             }.ignoresSafeArea(edges: .top)
@@ -232,9 +299,36 @@ extension Team {
     )
 }
 
+extension Team {
+    static let opponentMock = Team(
+        id: "2",
+        abbreviation: "DAL",
+        displayName: "Dallas Cowboys",
+        shortDisplayName: "Cowboys",
+        location: "Dallas",
+        color: "003594",
+        alternateColor: "869397",
+        logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png")],
+        franchise: Franchise(
+            id: "200",
+            fullName: "Dallas Cowboys Franchise",
+            venue: Venue(
+                fullName: "AT&T Stadium",
+                address: Address(city: "Arlington", state: "TX")
+            )
+        ),
+        record: nil,
+        standingSummary: "2nd in NFC East"
+    )
+}
+
 struct player_info_Previews: PreviewProvider {
     static var previews: some View {
-        player_info(team: .secondMock, player: .mock)
+        player_info(
+            teams: [Team.secondMock, Team.opponentMock],
+            team: .secondMock,
+            player: .mock
+        )
     }
 }
 

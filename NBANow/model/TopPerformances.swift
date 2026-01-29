@@ -10,8 +10,15 @@ import Foundation
 struct TopPerformanceItem: Identifiable {
     let id = UUID()
     let metric: String
-    let valueText: String
-    let progress: Double
+    let playerName: String
+    let playerValueText: String
+    let playerProgress: Double
+    let playerColor: String
+    let opponentName: String
+    let opponentValueText: String
+    let opponentProgress: Double
+    let opponentColor: String
+    let gameDate: Date?
 }
 
 enum TopPerformances {
@@ -97,10 +104,23 @@ extension TopPerformances {
 }
 
 struct TopPerformancesStats {
-
+    
     let items: [TopPerformanceItem]
 
-    init(player: Athlete) {
+    init(player: Athlete, team: Team, teams: [Team]) {
+
+        let opponent = randomOpponentTeam(from: teams, currentTeam: team)
+        let dates: [Date?] = [
+            randomGameDate(),
+            randomGameDate(),
+            randomGameDate()
+        ]
+
+        let playerName = player.fullName
+        let opponentName = opponent.displayName
+
+        let playerColor = team.color
+        let opponentColor = opponent.color
 
         switch PlayerPositions(player: player) {
 
@@ -108,18 +128,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.qb(.passYds).metric,
-                    valueText: "3,842",
-                    progress: min(3842.0 / 5000.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "4,215",
+                    playerProgress: min(4215.0 / 5000.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "3,640",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.qb(.td).metric,
-                    valueText: "28",
-                    progress: min(28.0 / 50.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "33",
+                    playerProgress: min(33.0 / 50.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "27",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.qb(.qbr).metric,
-                    valueText: "67.4",
-                    progress: min(67.4 / 100.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "72.8",
+                    playerProgress: min(72.8 / 100.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "65.1",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -127,18 +168,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.rb(.rushYds).metric,
-                    valueText: "1,120",
-                    progress: min(1120.0 / 2000.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "1,356",
+                    playerProgress: min(1356.0 / 2000.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "982",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.rb(.td).metric,
-                    valueText: "9",
-                    progress: min(9.0 / 25.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "12",
+                    playerProgress: min(12.0 / 25.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "8",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.rb(.ypc).metric,
-                    valueText: "4.6",
-                    progress: min(4.6 / 7.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "5.2",
+                    playerProgress: min(5.2 / 7.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "4.1",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -146,18 +208,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.receiver(.recYds).metric,
-                    valueText: "1,012",
-                    progress: min(1012.0 / 1800.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "1,244",
+                    playerProgress: min(1244.0 / 1800.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "1,010",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.receiver(.rec).metric,
-                    valueText: "78",
-                    progress: min(78.0 / 130.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "92",
+                    playerProgress: min(92.0 / 130.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "71",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.receiver(.td).metric,
-                    valueText: "7",
-                    progress: min(7.0 / 20.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "9",
+                    playerProgress: min(9.0 / 20.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "6",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -165,18 +248,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.defense(.tackles).metric,
-                    valueText: "96",
-                    progress: min(96.0 / 160.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "112",
+                    playerProgress: min(112.0 / 160.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "89",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.defense(.sacks).metric,
-                    valueText: "7.5",
-                    progress: min(7.5 / 20.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "9.0",
+                    playerProgress: min(9.0 / 20.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "6.5",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.defense(.pd).metric,
-                    valueText: "9",
-                    progress: min(9.0 / 25.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "14",
+                    playerProgress: min(14.0 / 25.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "10",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -184,18 +288,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.kicker(.fgPct).metric,
-                    valueText: "87.9%",
-                    progress: min(87.9 / 100.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "91.3%",
+                    playerProgress: min(91.3 / 100.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "85.6%",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.kicker(.long).metric,
-                    valueText: "54",
-                    progress: min(54.0 / 70.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "61",
+                    playerProgress: min(61.0 / 70.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "55",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.kicker(.points).metric,
-                    valueText: "129",
-                    progress: min(129.0 / 180.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "142",
+                    playerProgress: min(142.0 / 180.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "118",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -203,18 +328,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.punter(.avg).metric,
-                    valueText: "47.1",
-                    progress: min(47.1 / 55.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "49.8",
+                    playerProgress: min(49.8 / 55.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "46.3",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.punter(.inside20).metric,
-                    valueText: "28",
-                    progress: min(28.0 / 40.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "33",
+                    playerProgress: min(33.0 / 40.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "26",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.punter(.long).metric,
-                    valueText: "66",
-                    progress: min(66.0 / 80.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "72",
+                    playerProgress: min(72.0 / 80.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "65",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -222,18 +368,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.lineman(.snaps).metric,
-                    valueText: "1,067",
-                    progress: min(1067.0 / 1200.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "1,145",
+                    playerProgress: min(1145.0 / 1200.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "1,032",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.lineman(.penalties).metric,
-                    valueText: "7",
-                    progress: min(7.0 / 15.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "4",
+                    playerProgress: min(4.0 / 15.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "7",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.lineman(.sacksAllowed).metric,
-                    valueText: "3",
-                    progress: min(3.0 / 12.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "1",
+                    playerProgress: min(1.0 / 12.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "5",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
 
@@ -241,18 +408,39 @@ struct TopPerformancesStats {
             items = [
                 TopPerformanceItem(
                     metric: TopPerformances.specialTeam(.snaps).metric,
-                    valueText: "245",
-                    progress: min(245.0 / 400.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "310",
+                    playerProgress: min(310.0 / 400.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "255",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[0]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.specialTeam(.tackles).metric,
-                    valueText: "9",
-                    progress: min(9.0 / 25.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "13",
+                    playerProgress: min(13.0 / 25.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "9",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[1]
                 ),
                 TopPerformanceItem(
                     metric: TopPerformances.specialTeam(.fumblesRec).metric,
-                    valueText: "1",
-                    progress: min(1.0 / 5.0, 1.0)
+                    playerName: playerName,
+                    playerValueText: "2",
+                    playerProgress: min(2.0 / 5.0, 1.0),
+                    playerColor: playerColor,
+                    opponentName: opponentName,
+                    opponentValueText: "1",
+                    opponentProgress: 1.0,
+                    opponentColor: opponentColor,
+                    gameDate: dates[2]
                 )
             ]
         }
