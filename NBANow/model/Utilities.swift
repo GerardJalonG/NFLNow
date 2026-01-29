@@ -33,3 +33,21 @@ extension Array {
         return indices.contains(index) ? self[index] : nil
     }
 }
+
+func randomGameDate() -> Date? {
+    let calendar = Calendar.current
+
+    let allowedMonths = [7, 8, 9, 10, 11, 12, 1, 2]
+    let month = allowedMonths.randomElement()!
+
+    let year = month <= 2 ? 2026 : 2025
+    let day = Int.random(in: 1...28)
+
+    return calendar.date(
+        from: DateComponents(
+            year: year,
+            month: month,
+            day: day
+        )
+    )
+}
