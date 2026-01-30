@@ -1,6 +1,7 @@
 import Foundation
 
 struct GameSummaryData: Codable {
+    let header: GameHeader?
     let boxscore: boxScore?
     let gameInfo: GameInfo?
     let drives: Drives?
@@ -12,6 +13,34 @@ struct GameSummaryData: Codable {
 struct boxScore: Codable{
     let teams: [TeamStatistics]
     let players: [Player]
+}
+
+/*
+ Recursos para la información superior del resultado final, equipos enfrentados etc...
+ */
+
+struct GameHeader: Codable {
+    let competitions: [GameCompetition]
+}
+
+struct GameCompetition: Codable {
+    let status: GameStatus
+    let competitors: [GameCompetitor]
+}
+
+struct GameStatus: Codable {
+    let type: GameStatusType
+}
+
+struct GameStatusType: Codable {
+    let description: String 
+}
+
+struct GameCompetitor: Codable {
+    let homeAway: String
+    let team: Team
+    let score: String?
+    let winner: Bool?
 }
 
 /*
