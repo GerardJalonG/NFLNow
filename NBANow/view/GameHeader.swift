@@ -101,7 +101,8 @@ extension GameCompetition {
                     standingSummary: nil
                 ),
                 score: "31",
-                winner: true
+                winner: true,
+                linescores: nil
             ),
             GameCompetitor(
                 homeAway: "home",
@@ -123,7 +124,8 @@ extension GameCompetition {
                     standingSummary: nil
                 ),
                 score: "17",
-                winner: false
+                winner: false,
+                linescores: nil
             )
         ]
     )

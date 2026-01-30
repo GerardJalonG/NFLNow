@@ -41,6 +41,28 @@ struct GameCompetitor: Codable {
     let team: Team
     let score: String?
     let winner: Bool?
+    let linescores: [GameLineScore]?
+}
+
+struct GameLineScore: Codable {
+    let displayValue: String
+}
+
+extension GameCompetitor {
+
+    func totalScore() -> String {
+        guard let linescores else { return "-" }
+
+        var total = 0
+
+        for line in linescores {
+            if let value = Int(line.displayValue) {
+                total += value
+            }
+        }
+
+        return "\(total)"
+    }
 }
 
 /*

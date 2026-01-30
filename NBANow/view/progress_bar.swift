@@ -11,22 +11,22 @@ struct progress_bar: View {
     let progress: Double
     let color: Color
 
-    var body: some View {
-        GeometryReader { geo in
-            ZStack(alignment: .leading) {
-                Capsule()
-                    .fill(Color.gray.opacity(0.25))
-                    .frame(height: 8)
+    private let maxWidth: Double = 350
 
-                Capsule()
-                    .fill(color)
-                    .frame(
-                        width: geo.size.width * CGFloat(min(progress, 1)),
-                        height: 8
-                    )
-            }
+    var body: some View {
+        ZStack(alignment: .leading) {
+
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Color.gray.opacity(0.25))
+                .frame(width: maxWidth, height: 8)
+            
+            RoundedRectangle(cornerRadius: 4)
+                .fill(color)
+                .frame(
+                    width: maxWidth * min(progress, 1),
+                    height: 8
+                )
         }
-        .frame(height: 8)
     }
 }
 
