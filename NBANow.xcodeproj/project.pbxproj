@@ -17,6 +17,8 @@
 		BF3D2C0C2F2E2A1C00FE6063 /* TopPerformers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C0B2F2E2A0A00FE6063 /* TopPerformers.swift */; };
 		BF3D2C0E2F2E37AA00FE6063 /* TeamComparisionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C0D2F2E37A200FE6063 /* TeamComparisionStats.swift */; };
 		BF3D2C102F2E414500FE6063 /* GameStatsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C0F2F2E414100FE6063 /* GameStatsHelpers.swift */; };
+		BF3D2C122F2E546000FE6063 /* adding_players.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C112F2E545500FE6063 /* adding_players.swift */; };
+		BF3D2C142F2E55CD00FE6063 /* PlayerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C132F2E55C100FE6063 /* PlayerListItem.swift */; };
 		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
 		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
 		BFF5B4CC2F2967C30092AD1D /* player_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CB2F2967BD0092AD1D /* player_info.swift */; };
@@ -52,6 +54,8 @@
 		BF3D2C0B2F2E2A0A00FE6063 /* TopPerformers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPerformers.swift; sourceTree = "<group>"; };
 		BF3D2C0D2F2E37A200FE6063 /* TeamComparisionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamComparisionStats.swift; sourceTree = "<group>"; };
 		BF3D2C0F2F2E414100FE6063 /* GameStatsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatsHelpers.swift; sourceTree = "<group>"; };
+		BF3D2C112F2E545500FE6063 /* adding_players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adding_players.swift; sourceTree = "<group>"; };
+		BF3D2C132F2E55C100FE6063 /* PlayerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListItem.swift; sourceTree = "<group>"; };
 		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
 		BFF5B4CB2F2967BD0092AD1D /* player_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player_info.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 		EF82B8452F1541DE00AA058C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				BF3D2C132F2E55C100FE6063 /* PlayerListItem.swift */,
 				BF3D2C0F2F2E414100FE6063 /* GameStatsHelpers.swift */,
 				BFF5B4D12F2A56620092AD1D /* TopPerformances.swift */,
 				BFF5B4CF2F2A45BC0092AD1D /* PlayerStats.swift */,
@@ -127,6 +132,7 @@
 		EF9F4E152F1E7EFC00D1EC5A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				BF3D2C112F2E545500FE6063 /* adding_players.swift */,
 				BF3D2C0D2F2E37A200FE6063 /* TeamComparisionStats.swift */,
 				BF3D2C0B2F2E2A0A00FE6063 /* TopPerformers.swift */,
 				BF3D2C092F2D619900FE6063 /* QuarterScores.swift */,
@@ -265,6 +271,7 @@
 				BF3D2C042F2C17BC00FE6063 /* GameSummaryViewModel.swift in Sources */,
 				EFF90ECE2F153F7400E1F807 /* NBANow.xcdatamodeld in Sources */,
 				EFF90ECB2F153F7400E1F807 /* Persistence.swift in Sources */,
+				BF3D2C142F2E55CD00FE6063 /* PlayerListItem.swift in Sources */,
 				BFF5B4D02F2A45C20092AD1D /* PlayerStats.swift in Sources */,
 				BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */,
 				EF82B84C2F15557900AA058C /* Roster.swift in Sources */,
@@ -276,6 +283,7 @@
 				BFF5B4CC2F2967C30092AD1D /* player_info.swift in Sources */,
 				BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */,
 				BF3D2C0E2F2E37AA00FE6063 /* TeamComparisionStats.swift in Sources */,
+				BF3D2C122F2E546000FE6063 /* adding_players.swift in Sources */,
 				BFF5B4D22F2A56660092AD1D /* TopPerformances.swift in Sources */,
 				EF9F4E222F1E95AD00D1EC5A /* team_info.swift in Sources */,
 				EFF90EC42F153F7100E1F807 /* ContentView.swift in Sources */,
