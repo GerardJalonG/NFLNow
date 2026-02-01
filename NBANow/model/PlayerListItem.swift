@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PlayerListItem: Identifiable {
+struct PlayerListItem: Identifiable, Equatable {
     let id: String
     let name: String
     let teamName: String

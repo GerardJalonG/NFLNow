@@ -1,14 +1,9 @@
-//
-//  adding_players.swift
-//  NBANow
-//
-//  Created by Dean Martin Garcia on 31/1/26.
-//
-
 import SwiftUI
 import KingfisherSwiftUI
 
 struct AddingPlayersView: View {
+
+    @EnvironmentObject var store: FollowingPlayersStore
 
     private let players: [PlayerListItem] = PlayerListItem.mockPlayers
 
@@ -24,8 +19,40 @@ struct AddingPlayersView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
+                    
+                    Divider()
+
+                    Text("Following")
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 12) {
+                            ForEach(store.players) { player in
+                                if let imageURL = player.headshotURL,
+                                   let url = URL(string: imageURL) {
+                                    KFImage(url)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 52, height: 52)
+                                        .clipShape(Circle())
+                                } else {
+                                    Circle()
+                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                                        .frame(width: 52, height: 52)
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 12)
+                    }
+
+                    Divider()
 
                     ForEach(sortedTeams, id: \.self) { teamName in
+
                         Text(teamName)
                             .font(.headline)
                             .fontWeight(.semibold)
@@ -37,35 +64,16 @@ struct AddingPlayersView: View {
                         if let teamPlayers = playersByTeam[teamName] {
                             ForEach(teamPlayers) { player in
 
-                                HStack(spacing: 12) {
-                                    if let imageURL = player.headshotURL,
-                                       let url = URL(string: imageURL) {
-                                        KFImage(url)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 40, height: 40)
-                                            .clipShape(Circle())
-                                    } else {
-                                        Circle()
-                                            .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                                            .frame(width: 40, height: 40)
+                                PlayerRowView(
+                                    player: player,
+                                    isFollowing: store.players.contains(where: { $0.id == player.id }),
+                                    anadir: {
+                                        let added = store.add(playerAdded: player)
+                                    },
+                                    eliminar: {
+                                        store.remove(player)
                                     }
-
-                                    VStack(alignment: .leading, spacing: 4) {
-
-                                        Text(player.name)
-                                            .font(.body)
-                                            .fontWeight(.semibold)
-
-                                        Text("\(player.teamAbbreviation)  #\(player.jersey)  \(player.position)")
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                    }
-
-                                    Spacer()
-                                }
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 10)
+                                )
 
                                 Divider()
                                     .padding(.leading, 16)
@@ -85,5 +93,6 @@ struct AddingPlayersView: View {
 struct AddingPlayersView_Previews: PreviewProvider {
     static var previews: some View {
         AddingPlayersView()
+            .environmentObject(FollowingPlayersStore())
     }
 }
