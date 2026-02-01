@@ -37,7 +37,6 @@ struct NFLService {
                         }
                     }
                 }
-
                 completion(.success(teams))
             } catch {
                 completion(.failure(.decodingFailed(error)))
@@ -69,17 +68,12 @@ struct NFLService {
                 return
             }
 
-            do{
-                let decoded = try JSONDecoder().decode(Root.self, from: data)
-
-                if let firstTeamContainer = decoded.sports.first?.leagues.first?.teams.first {
-                       completion(.success(firstTeamContainer.team))
-                   }else{
-                       completion(.failure(.invalidResponse))
-                   }
-            }catch{
-                completion(.failure(.decodingFailed(error)))
-            }
+            do {
+               let decoded = try JSONDecoder().decode(TeamDetail.self, from: data)
+               completion(.success(decoded.team))
+           } catch {
+               completion(.failure(.decodingFailed(error)))
+           }
         }.resume()
     }
     
