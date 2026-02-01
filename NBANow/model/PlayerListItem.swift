@@ -56,22 +56,82 @@ extension PlayerListItem {
             headshotURL: nil
         ),
         PlayerListItem(
-                    id: "5",
-                    name: "Christian McCaffrey",
-                    teamName: "San Francisco 49ers",
-                    teamAbbreviation: "SF",
-                    jersey: "23",
-                    position: "RB",
-                    headshotURL: nil
-                ),
-                PlayerListItem(
-                    id: "6",
-                    name: "Josh Allen",
-                    teamName: "Buffalo Bills",
-                    teamAbbreviation: "BUF",
-                    jersey: "17",
-                    position: "QB",
-                    headshotURL: nil
-                )
+            id: "5",
+            name: "Christian McCaffrey",
+            teamName: "San Francisco 49ers",
+            teamAbbreviation: "SF",
+            jersey: "23",
+            position: "RB",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "6",
+            name: "Josh Allen",
+            teamName: "Buffalo Bills",
+            teamAbbreviation: "BUF",
+            jersey: "17",
+            position: "QB",
+            headshotURL: nil
+        )
+    ]
+}
+
+extension PlayerListItem {
+
+    static let mockTeamOfTheSeason: [PlayerListItem] = [
+        PlayerListItem(
+            id: "tots_1",
+            name: "Patrick Mahomes",
+            teamName: "Kansas City Chiefs",
+            teamAbbreviation: "KC",
+            jersey: "15",
+            position: "QB",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "tots_2",
+            name: "Tyreek Hill",
+            teamName: "Miami Dolphins",
+            teamAbbreviation: "MIA",
+            jersey: "10",
+            position: "WR",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "tots_3",
+            name: "Travis Kelce",
+            teamName: "Kansas City Chiefs",
+            teamAbbreviation: "KC",
+            jersey: "87",
+            position: "TE",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "tots_4",
+            name: "Micah Parsons",
+            teamName: "Dallas Cowboys",
+            teamAbbreviation: "DAL",
+            jersey: "11",
+            position: "LB",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "tots_5",
+            name: "Justin Jefferson",
+            teamName: "Minnesota Vikings",
+            teamAbbreviation: "MIN",
+            jersey: "18",
+            position: "WR",
+            headshotURL: nil
+        ),
+        PlayerListItem(
+            id: "tots_6",
+            name: "Nick Bosa",
+            teamName: "San Francisco 49ers",
+            teamAbbreviation: "SF",
+            jersey: "97",
+            position: "DE",
+            headshotURL: nil
+        )
     ]
 }

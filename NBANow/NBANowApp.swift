@@ -11,12 +11,14 @@ import SwiftUI
 struct NBANowApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject private var storePlayers = FollowingPlayersStore()
+    @StateObject private var teamOfSeason = TeamOfSeasonStore()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(storePlayers)
+                .environmentObject(teamOfSeason)
         }
     }
 }
