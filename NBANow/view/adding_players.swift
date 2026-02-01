@@ -4,6 +4,8 @@ import KingfisherSwiftUI
 struct AddingPlayersView: View {
 
     @EnvironmentObject var store: FollowingPlayersStore
+    
+    @State private var MaxPlayersAlert = false
 
     private let players: [PlayerListItem] = PlayerListItem.mockPlayers
 
@@ -69,6 +71,10 @@ struct AddingPlayersView: View {
                                     isFollowing: store.players.contains(where: { $0.id == player.id }),
                                     anadir: {
                                         let added = store.add(playerAdded: player)
+                                        
+                                        if !added {
+                                                MaxPlayersAlert = true
+                                            }
                                     },
                                     eliminar: {
                                         store.remove(player)
@@ -86,6 +92,13 @@ struct AddingPlayersView: View {
             }
             .navigationTitle("My Players")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .alert(isPresented: $MaxPlayersAlert) {
+            Alert(
+                title: Text("¡Has alcanzado el máximo de jugadores!"),
+                message: Text("Solo puedes añadir hasta 5 jugadores..."),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
 }

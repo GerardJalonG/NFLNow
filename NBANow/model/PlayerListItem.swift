@@ -54,6 +54,24 @@ extension PlayerListItem {
             jersey: "14",
             position: "QB",
             headshotURL: nil
-        )
+        ),
+        PlayerListItem(
+                    id: "5",
+                    name: "Christian McCaffrey",
+                    teamName: "San Francisco 49ers",
+                    teamAbbreviation: "SF",
+                    jersey: "23",
+                    position: "RB",
+                    headshotURL: nil
+                ),
+                PlayerListItem(
+                    id: "6",
+                    name: "Josh Allen",
+                    teamName: "Buffalo Bills",
+                    teamAbbreviation: "BUF",
+                    jersey: "17",
+                    position: "QB",
+                    headshotURL: nil
+                )
     ]
 }
