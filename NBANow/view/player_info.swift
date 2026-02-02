@@ -11,9 +11,9 @@ import KingfisherSwiftUI
 struct player_info: View {
     @State private var section: InfoSelected = .stats
     
-    let teams: [Team]
+    var randomTeam: Team?
     let team: Team
-    let player: Athlete
+    var player: Athlete?
     
     private var playerStats: [PlayerStats] {
         PlayerDefaultStats(player: player).stats
@@ -183,6 +183,8 @@ struct player_info: View {
                     }
                 }
             }.ignoresSafeArea(edges: .top)
+        }.onAppear {
+            //llamar al view model para obtener un team aleatorio y "crear" el athlete
         }
     }
 }
