@@ -37,8 +37,9 @@ struct AddingTeamsView: View {
 
                     ScrollView(.horizontal) {
                         HStack(spacing: 12) {
-                            ForEach(teamStore.teams) { team in
-                                if let logoURL = team.logos.first?.href,
+                            ForEach(teamStore.teamIDs, id: \.self) { id  in
+                                if let team = teams.first(where: { $0.id == id }),
+                                   let logoURL = team.logos.first?.href,
                                    let url = URL(string: logoURL) {
                                     KFImage(url)
                                         .resizable()

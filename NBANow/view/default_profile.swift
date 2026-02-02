@@ -1,28 +1,39 @@
 
 import SwiftUI
+import KingfisherSwiftUI
 
-struct profile_row: View {
-    let title: String
-    var body: some View {
-        HStack {
-            Text("\(title)")
-                .bold()
-            Spacer()
-            Image(systemName: "plus")
-            HStack {
-                
-            }
-        }.padding(.horizontal, 30)
-    }
-}
+
 
 struct default_profile: View {
+    
+    @EnvironmentObject var teamStore: TeamStore
+    
     var body: some View {
         ZStack {
             VStack(alignment: .leading){
-                Text("NFLNow").padding(.bottom, 40)
-            //header
+                
                 profile_row(title: "MY TEAMS")
+                
+                
+                ScrollView(.horizontal) {
+                    HStack(spacing: 12) {
+                        ForEach(teamStore.teams) { team in
+                            if let logoURL = team.logos.first?.href,
+                               let url = URL(string: logoURL) {
+                                KFImage(url)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 52, height: 52)
+                            } else {
+                                Rectangle()
+                                    .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                                    .frame(width: 52, height: 52)
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 12)
+                }
                 Spacer()
                 profile_row(title: "MY PLAYERS")
                 Spacer()

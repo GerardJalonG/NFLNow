@@ -27,6 +27,9 @@
 		BFD1B6C92F2F9B3E00425B07 /* TeamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */; };
 		BFD1B6CB2F2F9DB100425B07 /* TeamRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6CA2F2F9DA700425B07 /* TeamRowView.swift */; };
 		BFD1B6CD2F2F9E4E00425B07 /* adding_team.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6CC2F2F9E4800425B07 /* adding_team.swift */; };
+		BFDA08952F30EE0D006BFAFD /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */; };
+		BFDA08972F30EE44006BFAFD /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */; };
+		BFDA08992F30F542006BFAFD /* profile_row.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08982F30F53E006BFAFD /* profile_row.swift */; };
 		BFED317B2F1655410089FC58 /* GameSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED317A2F16553D0089FC58 /* GameSummary.swift */; };
 		BFF5B4CC2F2967C30092AD1D /* player_info.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CB2F2967BD0092AD1D /* player_info.swift */; };
 		BFF5B4CE2F2A0FFB0092AD1D /* info_selected.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5B4CD2F2A0FED0092AD1D /* info_selected.swift */; };
@@ -71,6 +74,9 @@
 		BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStore.swift; sourceTree = "<group>"; };
 		BFD1B6CA2F2F9DA700425B07 /* TeamRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRowView.swift; sourceTree = "<group>"; };
 		BFD1B6CC2F2F9E4800425B07 /* adding_team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adding_team.swift; sourceTree = "<group>"; };
+		BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
+		BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
+		BFDA08982F30F53E006BFAFD /* profile_row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile_row.swift; sourceTree = "<group>"; };
 		BFED317A2F16553D0089FC58 /* GameSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummary.swift; sourceTree = "<group>"; };
 		BFF5B4CB2F2967BD0092AD1D /* player_info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = player_info.swift; sourceTree = "<group>"; };
 		BFF5B4CD2F2A0FED0092AD1D /* info_selected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = info_selected.swift; sourceTree = "<group>"; };
@@ -116,6 +122,15 @@
 			path = services;
 			sourceTree = "<group>";
 		};
+		BFDA08932F30EDE8006BFAFD /* storage */ = {
+			isa = PBXGroup;
+			children = (
+				BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */,
+				BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */,
+			);
+			path = storage;
+			sourceTree = "<group>";
+		};
 		EF82B8452F1541DE00AA058C /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +164,7 @@
 		EF9F4E152F1E7EFC00D1EC5A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				BFDA08982F30F53E006BFAFD /* profile_row.swift */,
 				BFD1B6CC2F2F9E4800425B07 /* adding_team.swift */,
 				BFD1B6CA2F2F9DA700425B07 /* TeamRowView.swift */,
 				BFD1B6C62F2F83F700425B07 /* adding_teamOfSeason.swift */,
@@ -188,6 +204,7 @@
 		EFF90EC02F153F7100E1F807 /* NBANow */ = {
 			isa = PBXGroup;
 			children = (
+				BFDA08932F30EDE8006BFAFD /* storage */,
 				EF9F4E152F1E7EFC00D1EC5A /* view */,
 				EF9F4E112F1E7C4E00D1EC5A /* viewmodel */,
 				692CCC5D2F16C9440007A09B /* services */,
@@ -317,10 +334,13 @@
 				EF9F4E1B2F1E836500D1EC5A /* default_profile.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				BFD1B6C52F2F83D700425B07 /* TeamOfSeasonStore.swift in Sources */,
+				BFDA08992F30F542006BFAFD /* profile_row.swift in Sources */,
 				BF3D2C0A2F2D619E00FE6063 /* QuarterScores.swift in Sources */,
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
+				BFDA08972F30EE44006BFAFD /* DefaultStorage.swift in Sources */,
 				BF3D2C062F2C205500FE6063 /* game_stats.swift in Sources */,
 				BF3D2C022F2BB20F00FE6063 /* progress_bar.swift in Sources */,
+				BFDA08952F30EE0D006BFAFD /* DefaultKeys.swift in Sources */,
 				EF9F4E1E2F1E8E8200D1EC5A /* adding_teams.swift in Sources */,
 				EF9F4E132F1E7C6E00D1EC5A /* ViewModel.swift in Sources */,
 				692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */,

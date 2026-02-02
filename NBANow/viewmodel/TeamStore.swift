@@ -6,31 +6,32 @@
 //
 
 import Foundation
-
 final class TeamStore: ObservableObject {
 
-    @Published var teams: [Team] = []
+    @Published private(set) var teamIDs: [String] = []
 
-    let maxTeams = 5
+    private let storage = DefaultsStorage.shared
+    private let maxTeams = 5
+
+    init() {
+        teamIDs = storage.loadFollowingTeamIDs()
+    }
 
     func isFollowing(_ team: Team) -> Bool {
-        teams.contains { $0.id == team.id }
+        teamIDs.contains(team.id)
     }
 
     func add(_ team: Team) -> Bool {
-        if isFollowing(team) {
-            return false
-        }
+        guard !isFollowing(team) else { return true }
+        guard teamIDs.count < maxTeams else { return false }
 
-        if teams.count >= maxTeams {
-            return false
-        }
-
-        teams.append(team)
+        teamIDs.append(team.id)
+        storage.saveFollowingTeamIDs(teamIDs)
         return true
     }
 
     func remove(_ team: Team) {
-        teams.removeAll { $0.id == team.id }
+        teamIDs.removeAll { $0 == team.id }
+        storage.saveFollowingTeamIDs(teamIDs)
     }
 }

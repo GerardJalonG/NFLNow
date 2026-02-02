@@ -1,36 +1,38 @@
 //
-//  PlayerStore.swift
+//  FollowingPlayersStore.swift
 //  NBANow
 //
-//  Created by Dean Martin Garcia on 31/1/26.
+//  Created by Dean Martin Garcia on 1/2/26.
 //
 
 import Foundation
 
-class FollowingPlayersStore: ObservableObject {
+final class FollowingPlayersStore: ObservableObject {
 
-    @Published var players: [PlayerListItem] = []
+    @Published private(set) var playerIDs: [String] = []
 
-    let maxPlayers = 5
+    private let storage = DefaultsStorage.shared
+    private let maxPlayers = 5
     
-    func isFollowing(_ player: PlayerListItem) -> Bool {
-        players.contains { $0.id == player.id }
+    init() {
+        playerIDs = storage.loadFollowingPlayerIDs()
     }
 
-    func add(playerAdded player: PlayerListItem) -> Bool {
-        if isFollowing(player) {
-            return false
-        }
+    func isFollowing(_ player: PlayerListItem) -> Bool {
+        playerIDs.contains(player.id)
+    }
 
-        if players.count >= maxPlayers {
-            return false
-        }
+    func add(_ player: PlayerListItem) -> Bool {
+        guard !isFollowing(player) else { return true }
+        guard playerIDs.count < maxPlayers else { return false }
 
-        players.append(player)
+        playerIDs.append(player.id)
+        storage.saveFollowingPlayerIDs(playerIDs)
         return true
     }
 
     func remove(_ player: PlayerListItem) {
-        players.removeAll { $0.id == player.id }
+        playerIDs.removeAll { $0 == player.id }
+        storage.saveFollowingPlayerIDs(playerIDs)
     }
 }

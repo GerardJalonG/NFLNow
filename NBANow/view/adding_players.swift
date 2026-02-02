@@ -32,8 +32,9 @@ struct AddingPlayersView: View {
 
                     ScrollView(.horizontal) {
                         HStack(spacing: 12) {
-                            ForEach(store.players) { player in
-                                if let imageURL = player.headshotURL,
+                            ForEach(store.playerIDs, id: \.self) { id in
+                                if let player = players.first(where: { $0.id == id }),
+                                   let imageURL = player.headshotURL,
                                    let url = URL(string: imageURL) {
                                     KFImage(url)
                                         .resizable()
@@ -68,9 +69,9 @@ struct AddingPlayersView: View {
 
                                 PlayerRowView(
                                     player: player,
-                                    isFollowing: store.players.contains(where: { $0.id == player.id }),
+                                    isFollowing: store.isFollowing(player),
                                     anadir: {
-                                        let added = store.add(playerAdded: player)
+                                        let added = store.add(player)
                                         
                                         if !added {
                                                 MaxPlayersAlert = true
