@@ -1,8 +1,5 @@
 import Foundation
 
-//teams: id, abbreviation, displayName, location, color, alternateColor, logos ->0 href,
-//teamDetail{id}: franchise -> venue -> fullName, nextEvent[...]
-
 struct Root: Codable {
     let sports: [Sport]
 }
@@ -41,89 +38,6 @@ struct Team: Codable, Identifiable  {
             if conferencia.contains("AFC") { return "AFC" }
             return ""
         }
-}
-
-extension Team {
-    static let mockTeams: [Team] = [
-        Team(
-            id: "1",
-            abbreviation: "ATL",
-            displayName: "Atlanta Falcons",
-            shortDisplayName: "Falcons",
-            location: "Atlanta",
-            color: "a71930",
-            alternateColor: "000000",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "1st in NFC South"
-        ),
-        Team(
-            id: "2",
-            abbreviation: "DAL",
-            displayName: "Dallas Cowboys",
-            shortDisplayName: "Cowboys",
-            location: "Dallas",
-            color: "041e42",
-            alternateColor: "869397",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "2nd in NFC East"
-        ),
-        Team(
-            id: "3",
-            abbreviation: "SF",
-            displayName: "San Francisco 49ers",
-            shortDisplayName: "49ers",
-            location: "San Francisco",
-            color: "aa0000",
-            alternateColor: "b3995d",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "1st in NFC West"
-        ),
-        Team(
-            id: "4",
-            abbreviation: "KC",
-            displayName: "Kansas City Chiefs",
-            shortDisplayName: "Chiefs",
-            location: "Kansas City",
-            color: "e31837",
-            alternateColor: "ffb81c",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "1st in AFC West"
-        ),
-        Team(
-            id: "5",
-            abbreviation: "BUF",
-            displayName: "Buffalo Bills",
-            shortDisplayName: "Bills",
-            location: "Buffalo",
-            color: "00338d",
-            alternateColor: "c60c30",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "2nd in AFC East"
-        ),
-        Team(
-            id: "6",
-            abbreviation: "CIN",
-            displayName: "Cincinnati Bengals",
-            shortDisplayName: "Bengals",
-            location: "Cincinnati",
-            color: "fb4f14",
-            alternateColor: "000000",
-            logos: [LogoItem(href: "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png")],
-            franchise: nil,
-            record: nil,
-            standingSummary: "3rd in AFC North"
-        )
-    ]
 }
 
 struct TeamDetail: Codable {

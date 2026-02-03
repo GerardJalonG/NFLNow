@@ -104,23 +104,31 @@ extension TopPerformances {
 }
 
 struct TopPerformancesStats {
-    
+
     let items: [TopPerformanceItem]
 
-    init(player: Athlete, team: Team, teams: [Team]) {
+    init(player: Athlete) {
 
-        let opponent = randomOpponentTeam(from: teams, currentTeam: team)
         let dates: [Date?] = [
             randomGameDate(),
             randomGameDate(),
             randomGameDate()
         ]
 
-        let playerName = player.fullName
-        let opponentName = opponent.displayName
+        let opponentNames = [
+            "Dallas Cowboys",
+            "Green Bay Packers",
+            "Kansas City Chiefs"
+        ]
 
-        let playerColor = team.color
-        let opponentColor = opponent.color
+        let opponentColors = [
+            "003594",
+            "203731",
+            "E31837"
+        ]
+
+        let playerName = player.fullName
+        let playerColor = "FF9500"
 
         switch PlayerPositions(player: player) {
 
@@ -132,10 +140,10 @@ struct TopPerformancesStats {
                     playerValueText: "4,215",
                     playerProgress: min(4215.0 / 5000.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "3,640",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -144,10 +152,10 @@ struct TopPerformancesStats {
                     playerValueText: "33",
                     playerProgress: min(33.0 / 50.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "27",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -156,10 +164,10 @@ struct TopPerformancesStats {
                     playerValueText: "72.8",
                     playerProgress: min(72.8 / 100.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "65.1",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -172,10 +180,10 @@ struct TopPerformancesStats {
                     playerValueText: "1,356",
                     playerProgress: min(1356.0 / 2000.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "982",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -184,10 +192,10 @@ struct TopPerformancesStats {
                     playerValueText: "12",
                     playerProgress: min(12.0 / 25.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "8",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -196,10 +204,10 @@ struct TopPerformancesStats {
                     playerValueText: "5.2",
                     playerProgress: min(5.2 / 7.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "4.1",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -212,10 +220,10 @@ struct TopPerformancesStats {
                     playerValueText: "1,244",
                     playerProgress: min(1244.0 / 1800.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "1,010",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -224,10 +232,10 @@ struct TopPerformancesStats {
                     playerValueText: "92",
                     playerProgress: min(92.0 / 130.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "71",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -236,10 +244,10 @@ struct TopPerformancesStats {
                     playerValueText: "9",
                     playerProgress: min(9.0 / 20.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "6",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -252,10 +260,10 @@ struct TopPerformancesStats {
                     playerValueText: "112",
                     playerProgress: min(112.0 / 160.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "89",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -264,10 +272,10 @@ struct TopPerformancesStats {
                     playerValueText: "9.0",
                     playerProgress: min(9.0 / 20.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "6.5",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -276,10 +284,10 @@ struct TopPerformancesStats {
                     playerValueText: "14",
                     playerProgress: min(14.0 / 25.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "10",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -292,10 +300,10 @@ struct TopPerformancesStats {
                     playerValueText: "91.3%",
                     playerProgress: min(91.3 / 100.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "85.6%",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -304,10 +312,10 @@ struct TopPerformancesStats {
                     playerValueText: "61",
                     playerProgress: min(61.0 / 70.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "55",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -316,10 +324,10 @@ struct TopPerformancesStats {
                     playerValueText: "142",
                     playerProgress: min(142.0 / 180.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "118",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -332,10 +340,10 @@ struct TopPerformancesStats {
                     playerValueText: "49.8",
                     playerProgress: min(49.8 / 55.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "46.3",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -344,10 +352,10 @@ struct TopPerformancesStats {
                     playerValueText: "33",
                     playerProgress: min(33.0 / 40.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "26",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -356,10 +364,10 @@ struct TopPerformancesStats {
                     playerValueText: "72",
                     playerProgress: min(72.0 / 80.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "65",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -372,10 +380,10 @@ struct TopPerformancesStats {
                     playerValueText: "1,145",
                     playerProgress: min(1145.0 / 1200.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "1,032",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -384,10 +392,10 @@ struct TopPerformancesStats {
                     playerValueText: "4",
                     playerProgress: min(4.0 / 15.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "7",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -396,10 +404,10 @@ struct TopPerformancesStats {
                     playerValueText: "1",
                     playerProgress: min(1.0 / 12.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "5",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]
@@ -412,10 +420,10 @@ struct TopPerformancesStats {
                     playerValueText: "310",
                     playerProgress: min(310.0 / 400.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[0],
                     opponentValueText: "255",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[0],
                     gameDate: dates[0]
                 ),
                 TopPerformanceItem(
@@ -424,10 +432,10 @@ struct TopPerformancesStats {
                     playerValueText: "13",
                     playerProgress: min(13.0 / 25.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[1],
                     opponentValueText: "9",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[1],
                     gameDate: dates[1]
                 ),
                 TopPerformanceItem(
@@ -436,10 +444,10 @@ struct TopPerformancesStats {
                     playerValueText: "2",
                     playerProgress: min(2.0 / 5.0, 1.0),
                     playerColor: playerColor,
-                    opponentName: opponentName,
+                    opponentName: opponentNames[2],
                     opponentValueText: "1",
                     opponentProgress: 1.0,
-                    opponentColor: opponentColor,
+                    opponentColor: opponentColors[2],
                     gameDate: dates[2]
                 )
             ]

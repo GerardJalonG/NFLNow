@@ -11,7 +11,6 @@ import SwiftUI
 struct NBANowApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject private var storePlayers = FollowingPlayersStore()
-    @StateObject private var teamOfSeason = TeamOfSeasonStore()
     @StateObject private var teamStore = TeamStore()
 
     var body: some Scene {
@@ -19,7 +18,6 @@ struct NBANowApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(storePlayers)
-                .environmentObject(teamOfSeason)
                 .environmentObject(teamStore)
         }
     }

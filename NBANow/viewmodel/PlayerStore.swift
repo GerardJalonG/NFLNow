@@ -18,21 +18,21 @@ final class FollowingPlayersStore: ObservableObject {
         playerIDs = storage.loadFollowingPlayerIDs()
     }
 
-    func isFollowing(_ player: PlayerListItem) -> Bool {
-        playerIDs.contains(player.id)
-    }
+    func isFollowing(id: String) -> Bool {
+           playerIDs.contains(id)
+       }
 
-    func add(_ player: PlayerListItem) -> Bool {
-        guard !isFollowing(player) else { return true }
-        guard playerIDs.count < maxPlayers else { return false }
+       func add(id: String) -> Bool {
+           guard !isFollowing(id: id) else { return true }
+           guard playerIDs.count < maxPlayers else { return false }
 
-        playerIDs.append(player.id)
-        storage.saveFollowingPlayerIDs(playerIDs)
-        return true
-    }
+           playerIDs.append(id)
+           storage.saveFollowingPlayerIDs(playerIDs)
+           return true
+       }
 
-    func remove(_ player: PlayerListItem) {
-        playerIDs.removeAll { $0 == player.id }
-        storage.saveFollowingPlayerIDs(playerIDs)
-    }
+       func remove(id: String) {
+           playerIDs.removeAll { $0 == id }
+           storage.saveFollowingPlayerIDs(playerIDs)
+       }
 }

@@ -52,11 +52,6 @@ func randomGameDate() -> Date? {
     )
 }
 
-func randomOpponentTeam(from teams: [Team], currentTeam: Team) -> Team {
-    let filteredTeams = teams.filter { $0.id != currentTeam.id }
-    return filteredTeams.randomElement()!
-}
-
 struct ProgressBar: View {
     let progress: Double
     let color: Color

@@ -29,12 +29,4 @@ final class DefaultsStorage {
     func saveFollowingPlayerIDs(_ players: [String]) {
         defaults.set(players, forKey: DefaultsKeys.followingPlayerIDs)
     }
-
-    func loadTeamOfSeasonPlayerIDs() -> [String] {
-        defaults.stringArray(forKey: DefaultsKeys.teamOfSeason) ?? []
-    }
-
-    func saveTeamOfSeasonPlayerIDs(_ players: [String]) {
-        defaults.set(players, forKey: DefaultsKeys.teamOfSeason)
-    }
 }
