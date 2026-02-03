@@ -2,6 +2,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -66,8 +67,49 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
+struct HomeView: View {
+    var body: some View {
+        Text("Home")
+            .font(.largeTitle)
+    }
+}
+
+struct CalendarView: View {
+    var body: some View {
+        Text("Calendar")
+            .font(.largeTitle)
+    }
+}
+
+struct SampleView: View {
+    var body: some View {
+        TabView {
+
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+
+            CalendarView()
+                .tabItem {
+                    Image(systemName: "calendar")
+                    Text("Calendar")
+                }
+
+            default_profile()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Profile")
+                }
+        }
+    }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        SampleView()
+            .environmentObject(TeamStore())
+            .environmentObject(PlayerStore())
     }
 }

@@ -9,5 +9,5 @@ import Foundation
 
 enum DefaultsKeys {
     static let followingTeamIDs = "following_team_ids"
-    static let CreatedPlayers = "cretaed_players"
+    static let createdPlayers = "created_players"
 }

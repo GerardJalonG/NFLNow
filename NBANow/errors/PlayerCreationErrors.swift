@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum PlayerCreationError: Identifiable {
+enum PlayerCreationError: String, Identifiable {
     case emptyName
     case nameTooLong
     case invalidAge
     case invalidJersey
     case maxPlayersReached
 
-    var id: String { title }
+    var id: String { rawValue }
 
     var title: String {
         "Error"

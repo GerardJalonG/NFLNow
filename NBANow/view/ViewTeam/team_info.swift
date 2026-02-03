@@ -83,7 +83,7 @@ struct team_info: View {
                 
                 
                 
-            }.ignoresSafeArea(edges: .top)
+            }.edgesIgnoringSafeArea(.top)
             //.navigationTitle(team.displayName)
             //.navigationBarTitleDisplayMode(.inline)
         }

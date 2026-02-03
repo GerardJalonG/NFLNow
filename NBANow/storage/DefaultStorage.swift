@@ -23,12 +23,12 @@ final class DefaultsStorage {
     }
 
     func loadCreatedPlayers() -> [CreatedPlayer] {
-        guard let data = defaults.data(forKey: DefaultsKeys.CreatedPlayers) else { return [] }
+        guard let data = defaults.data(forKey: DefaultsKeys.createdPlayers) else { return [] }
         return (try? JSONDecoder().decode([CreatedPlayer].self, from: data)) ?? []
     }
 
     func saveCreatedPlayers(_ players: [CreatedPlayer]) {
         let data = try? JSONEncoder().encode(players)
-        defaults.set(data, forKey: DefaultsKeys.CreatedPlayers)
+        defaults.set(data, forKey: DefaultsKeys.createdPlayers)
     }
 }
