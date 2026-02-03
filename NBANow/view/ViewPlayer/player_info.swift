@@ -9,10 +9,10 @@ import KingfisherSwiftUI
 
 struct player_info: View {
 
-    let player: Athlete
+    let player: CreatedPlayer
 
     private var playerStats: [PlayerStats] {
-        PlayerDefaultStats(player: player).stats
+        PlayerPositions.PlayerDefaultStats(player: player).stats
     }
 
     private var topPerformances: [TopPerformanceItem] {

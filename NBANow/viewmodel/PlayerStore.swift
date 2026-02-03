@@ -38,7 +38,7 @@ final class PlayerStore: ObservableObject {
             id: UUID().uuidString,
             name: trimmed,
             age: age,
-            jerseyNumber: jerseyNumber,
+            jerseyNumber: String(jerseyNumber),
             position: position,
             team: team,
             avatar: avatar

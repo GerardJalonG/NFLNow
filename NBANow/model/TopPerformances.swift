@@ -107,7 +107,7 @@ struct TopPerformancesStats {
 
     let items: [TopPerformanceItem]
 
-    init(player: Athlete) {
+    init(player: CreatedPlayer) {
 
         let dates: [Date?] = [
             randomGameDate(),
@@ -127,7 +127,7 @@ struct TopPerformancesStats {
             "E31837"
         ]
 
-        let playerName = player.fullName
+        let playerName = player.name
         let playerColor = "FF9500"
 
         switch PlayerPositions(player: player) {

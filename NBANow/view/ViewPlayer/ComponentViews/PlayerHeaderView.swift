@@ -8,20 +8,18 @@
 import SwiftUI
 struct PlayerHeaderView: View {
 
-    let player: Athlete
+    let player: CreatedPlayer
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
 
             Text("Age: \(player.age)")
-                .font(.caption)
                 .foregroundColor(.gray)
 
-            Text("#\(player.jersey ?? "-")  \(player.position.abbreviation)")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+            Text("#\(player.jerseyNumber )  \(player.position.displayName)")
+                .foregroundColor(.gray)
 
-            Text(player.fullName)
+            Text(player.name)
                 .font(.title)
                 .fontWeight(.bold)
         }

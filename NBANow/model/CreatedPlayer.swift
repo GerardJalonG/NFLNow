@@ -11,10 +11,16 @@ struct CreatedPlayer: Identifiable, Codable, Equatable {
     let id: String
     let name: String
     let age: Int
-    let jerseyNumber: Int
+    let jerseyNumber: String
     let position: PlayerPosition
     let team: PlayerTeam
     let avatar: PlayerAvatar
+}
+
+extension CreatedPlayer {
+    var fullName: String { name }
+    var jerseyText: String { jerseyNumber }
+    var positionAbbreviation: String { position.rawValue }
 }
 
 enum PlayerPosition: String, CaseIterable, Codable, Equatable, Identifiable {
@@ -139,4 +145,16 @@ enum PlayerAvatar: String, CaseIterable, Codable, Equatable, Identifiable {
     case star = "⭐️"
 
     var id: String { rawValue }
+}
+
+extension CreatedPlayer {
+    static let mock = CreatedPlayer(
+        id: UUID().uuidString,
+        name: "Tyler Allgeier",
+        age: 24,
+        jerseyNumber: "25",
+        position: .rb,
+        team: .atl,
+        avatar: .star
+    )
 }
