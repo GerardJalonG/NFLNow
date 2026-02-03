@@ -7,32 +7,49 @@
 
 import Foundation
 
-final class FollowingPlayersStore: ObservableObject {
+final class PlayerStore: ObservableObject {
 
-    @Published private(set) var playerIDs: [String] = []
+    @Published private(set) var players: [CreatedPlayer] = []
 
     private let storage = DefaultsStorage.shared
     private let maxPlayers = 5
-    
+
     init() {
-        playerIDs = storage.loadFollowingPlayerIDs()
+        players = storage.loadCreatedPlayers()
     }
 
-    func isFollowing(id: String) -> Bool {
-           playerIDs.contains(id)
-       }
+    func createPlayer(
+        name: String,
+        age: Int,
+        jerseyNumber: Int,
+        position: PlayerPosition,
+        team: PlayerTeam
+    ) -> Bool {
 
-       func add(id: String) -> Bool {
-           guard !isFollowing(id: id) else { return true }
-           guard playerIDs.count < maxPlayers else { return false }
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
 
-           playerIDs.append(id)
-           storage.saveFollowingPlayerIDs(playerIDs)
-           return true
-       }
+        guard players.count < maxPlayers else { return false }
+        guard !trimmed.isEmpty else { return false }
+        guard trimmed.count <= 30 else { return false }
+        guard (18...40).contains(age) else { return false }
+        guard (0...99).contains(jerseyNumber) else { return false }
 
-       func remove(id: String) {
-           playerIDs.removeAll { $0 == id }
-           storage.saveFollowingPlayerIDs(playerIDs)
-       }
+        let newPlayer = CreatedPlayer(
+            id: UUID().uuidString,
+            name: trimmed,
+            age: age,
+            jerseyNumber: jerseyNumber,
+            position: position,
+            team: team
+        )
+
+        players.append(newPlayer)
+        storage.saveCreatedPlayers(players)
+        return true
+    }
+
+    func remove(id: String) {
+        players.removeAll { $0.id == id }
+        storage.saveCreatedPlayers(players)
+    }
 }

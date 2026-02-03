@@ -17,9 +17,9 @@ struct PlayerHeaderView: View {
                 .font(.caption)
                 .foregroundColor(.gray)
 
-            Text("#\(player.jersey)  \(player.position.abbreviation)")
-                .font(.caption)
-                .foregroundColor(.gray)
+            Text("#\(player.jersey ?? "-")  \(player.position.abbreviation)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
 
             Text(player.fullName)
                 .font(.title)

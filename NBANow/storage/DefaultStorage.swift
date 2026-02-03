@@ -22,11 +22,13 @@ final class DefaultsStorage {
         defaults.set(teams, forKey: DefaultsKeys.followingTeamIDs)
     }
 
-    func loadFollowingPlayerIDs() -> [String] {
-        defaults.stringArray(forKey: DefaultsKeys.followingPlayerIDs) ?? []
+    func loadCreatedPlayers() -> [CreatedPlayer] {
+        guard let data = defaults.data(forKey: DefaultsKeys.CreatedPlayers) else { return [] }
+        return (try? JSONDecoder().decode([CreatedPlayer].self, from: data)) ?? []
     }
 
-    func saveFollowingPlayerIDs(_ players: [String]) {
-        defaults.set(players, forKey: DefaultsKeys.followingPlayerIDs)
+    func saveCreatedPlayers(_ players: [CreatedPlayer]) {
+        let data = try? JSONEncoder().encode(players)
+        defaults.set(data, forKey: DefaultsKeys.CreatedPlayers)
     }
 }

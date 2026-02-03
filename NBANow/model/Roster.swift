@@ -13,6 +13,7 @@ struct AthleteGroup: Codable {
 struct Athlete: Codable, Identifiable {
     let id: String
     let fullName: String
+    let age: Int
     let jersey: String?
     let position: Position
     let headshot: Headshot?

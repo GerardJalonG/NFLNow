@@ -32,12 +32,6 @@ struct Team: Codable, Identifiable  {
     var franchise: Franchise?
     var record: Record?
     var standingSummary: String?
-    var conference: String {
-            guard let conferencia = standingSummary else { return "" }
-            if conferencia.contains("NFC") { return "NFC" }
-            if conferencia.contains("AFC") { return "AFC" }
-            return ""
-        }
 }
 
 struct TeamDetail: Codable {

@@ -10,6 +10,7 @@ import Foundation
 struct CreatedPlayer: Identifiable, Codable, Equatable {
     let id: String
     let name: String
+    let age: Int
     let jerseyNumber: Int
     let position: PlayerPosition
     let team: PlayerTeam

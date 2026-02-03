@@ -11,16 +11,13 @@ import KingfisherSwiftUI
 struct AddingTeamsView: View {
 
     @EnvironmentObject var teamStore: TeamStore
-
-    let teams: [Team]
+    @StateObject private var teamsViewModel = ViewModel()
 
     @State private var maxTeamsAlert = false
 
-    private var teamsByConference: [String: [Team]] {
-        Dictionary(grouping: teams) { $0.conference }
+    private var teams: [Team] {
+        teamsViewModel.teams
     }
-
-    private let order = ["NFC", "AFC"]
 
     var body: some View {
         NavigationView {
@@ -37,14 +34,16 @@ struct AddingTeamsView: View {
 
                     ScrollView(.horizontal) {
                         HStack(spacing: 12) {
-                            ForEach(teamStore.teamIDs, id: \.self) { id  in
+                            ForEach(teamStore.teamIDs, id: \.self) { id in
                                 if let team = teams.first(where: { $0.id == id }),
                                    let logoURL = team.logos.first?.href,
                                    let url = URL(string: logoURL) {
+
                                     KFImage(url)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 52, height: 52)
+
                                 } else {
                                     Rectangle()
                                         .stroke(Color.gray.opacity(0.4), lineWidth: 1)
@@ -58,43 +57,33 @@ struct AddingTeamsView: View {
 
                     Divider()
 
-                    ForEach(order, id: \.self) { conf in
-                        if let confTeams = teamsByConference[conf] {
-
-                            Text(conf)
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.gray)
-                                .padding(.horizontal, 16)
-                                .padding(.top, 14)
-                                .padding(.bottom, 8)
-
-                            ForEach(confTeams) { team in
-                                TeamRowView(
-                                    team: team,
-                                    isFollowing: teamStore.isFollowing(team),
-                                    anadir: {
-                                        let added = teamStore.add(team)
-                                        if !added {
-                                            maxTeamsAlert = true
-                                        }
-                                    },
-                                    eliminar: {
-                                        teamStore.remove(team)
-                                    }
-                                )
-
-                                Divider()
-                                    .padding(.leading, 16)
+                    ForEach(teams) { team in
+                        TeamRowView(
+                            team: team,
+                            isFollowing: teamStore.isFollowing(team),
+                            anadir: {
+                                let added = teamStore.add(team)
+                                if !added {
+                                    maxTeamsAlert = true
+                                }
+                            },
+                            eliminar: {
+                                teamStore.remove(team)
                             }
+                        )
 
-                            Spacer().frame(height: 10)
-                        }
+                        Divider()
+                            .padding(.leading, 16)
                     }
                 }
             }
             .navigationTitle("My Teams")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                if teams.isEmpty {
+                    teamsViewModel.fetchAllTeams()
+                }
+            }
         }
         .alert(isPresented: $maxTeamsAlert) {
             Alert(
@@ -108,7 +97,7 @@ struct AddingTeamsView: View {
 
 struct AddingTeamsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddingTeamsView(teams: Team.mockTeams)
+        AddingTeamsView()
             .environmentObject(TeamStore())
     }
 }
