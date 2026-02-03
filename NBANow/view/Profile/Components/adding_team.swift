@@ -13,7 +13,7 @@ struct AddingTeamsView: View {
     @EnvironmentObject var teamStore: TeamStore
     @StateObject private var teamsViewModel = ViewModel()
 
-    @State private var maxTeamsAlert = false
+    @State private var limitError: LimitReachedError?
 
     private var teams: [Team] {
         teamsViewModel.teams
@@ -64,7 +64,7 @@ struct AddingTeamsView: View {
                             anadir: {
                                 let added = teamStore.add(team)
                                 if !added {
-                                    maxTeamsAlert = true
+                                    limitError = .maxTeams
                                 }
                             },
                             eliminar: {
@@ -85,10 +85,10 @@ struct AddingTeamsView: View {
                 }
             }
         }
-        .alert(isPresented: $maxTeamsAlert) {
+        .alert(item: $limitError) { error in
             Alert(
-                title: Text("¡Has alcanzado el máximo de equipos!"),
-                message: Text("Solo puedes añadir hasta 5 equipos..."),
+                title: Text(error.title),
+                message: Text(error.message),
                 dismissButton: .default(Text("OK"))
             )
         }

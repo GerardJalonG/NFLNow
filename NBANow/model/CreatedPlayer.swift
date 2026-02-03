@@ -14,6 +14,7 @@ struct CreatedPlayer: Identifiable, Codable, Equatable {
     let jerseyNumber: Int
     let position: PlayerPosition
     let team: PlayerTeam
+    let avatar: PlayerAvatar
 }
 
 enum PlayerPosition: String, CaseIterable, Codable, Equatable, Identifiable {
@@ -128,4 +129,14 @@ enum PlayerTeam: String, CaseIterable, Codable, Equatable, Identifiable {
         case .wsh: return "Washington Commanders"
         }
     }
+}
+
+enum PlayerAvatar: String, CaseIterable, Codable, Equatable, Identifiable {
+    case fire = "🔥"
+    case bolt = "⚡️"
+    case lion = "🦁"
+    case rocket = "🚀"
+    case star = "⭐️"
+
+    var id: String { rawValue }
 }

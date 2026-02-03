@@ -7,11 +7,12 @@ struct default_profile: View {
     @EnvironmentObject var createdPlayersStore: PlayerStore
 
     @StateObject private var teamsViewModel = ViewModel()
-
     private var teams: [Team] { teamsViewModel.teams }
 
     @State private var showTeams = false
     @State private var showPlayers = false
+    @State private var showEditPlayers = false
+    @State private var limitError: LimitReachedError?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,19 +40,28 @@ struct default_profile: View {
                 .padding(.horizontal, 16)
             }
 
-            profile_row(
+            PlayerProfileRow(
                 title: "MY PLAYERS",
                 showEdit: !createdPlayersStore.players.isEmpty,
-                action: { showPlayers = true }
+                onEdit: {
+                    showEditPlayers = true
+                },
+                onAdd: {
+                    if createdPlayersStore.players.count >= 5 {
+                        limitError = .maxPlayers
+                    } else {
+                        showPlayers = true
+                    }
+                }
             )
 
             ScrollView(.horizontal) {
                 HStack(spacing: 12) {
-                    ForEach(createdPlayersStore.players) { p in
+                    ForEach(createdPlayersStore.players) { player in
                         ZStack {
                             Circle().fill(Color.gray.opacity(0.2))
-                            Text(String(p.name.prefix(1)).uppercased())
-                                .font(.headline)
+                            Text(player.avatar.rawValue)
+                                .font(.title2)
                         }
                         .frame(width: 52, height: 52)
                     }
@@ -67,14 +77,30 @@ struct default_profile: View {
         .sheet(isPresented: $showTeams) {
             AddingTeamsView()
         }
-        //.sheet(isPresented: $showPlayers) {
-         //   AddingPlayersView()
-        //}
+        .sheet(isPresented: $showPlayers) {
+            AddingPlayersView(
+                isPresented: $showPlayers,
+            )
+            .environmentObject(createdPlayersStore)
+        }
+        .sheet(isPresented: $showEditPlayers) {
+            EditingPlayersView()
+                .environmentObject(createdPlayersStore)
+        }
+        .alert(item: $limitError) { error in
+            Alert(
+                title: Text(error.title),
+                message: Text(error.message),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
 
-#Preview {
-    default_profile()
-        .environmentObject(TeamStore())
-        .environmentObject(PlayerStore())
+struct default_profile_Previews: PreviewProvider {
+    static var previews: some View {
+        default_profile()
+            .environmentObject(TeamStore())
+            .environmentObject(PlayerStore())
+    }
 }

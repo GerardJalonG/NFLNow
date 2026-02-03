@@ -4,7 +4,6 @@
 //
 //  Created by Dean Martin Garcia on 1/2/26.
 //
-
 import Foundation
 
 final class PlayerStore: ObservableObject {
@@ -23,16 +22,17 @@ final class PlayerStore: ObservableObject {
         age: Int,
         jerseyNumber: Int,
         position: PlayerPosition,
-        team: PlayerTeam
-    ) -> Bool {
+        team: PlayerTeam,
+        avatar: PlayerAvatar
+    ) -> PlayerCreationError? {
 
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        guard players.count < maxPlayers else { return false }
-        guard !trimmed.isEmpty else { return false }
-        guard trimmed.count <= 30 else { return false }
-        guard (18...40).contains(age) else { return false }
-        guard (0...99).contains(jerseyNumber) else { return false }
+        if players.count >= maxPlayers { return .maxPlayersReached }
+        if trimmed.isEmpty { return .emptyName }
+        if trimmed.count > 30 { return .nameTooLong }
+        if !(18...40).contains(age) { return .invalidAge }
+        if !(0...99).contains(jerseyNumber) { return .invalidJersey }
 
         let newPlayer = CreatedPlayer(
             id: UUID().uuidString,
@@ -40,12 +40,13 @@ final class PlayerStore: ObservableObject {
             age: age,
             jerseyNumber: jerseyNumber,
             position: position,
-            team: team
+            team: team,
+            avatar: avatar
         )
 
         players.append(newPlayer)
         storage.saveCreatedPlayers(players)
-        return true
+        return nil
     }
 
     func remove(id: String) {
