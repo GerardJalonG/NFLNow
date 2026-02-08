@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CCC5E2F16C95A0007A09B /* APIError.swift */; };
 		69AD096E2F3932AC004AF46D /* home_view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD096D2F3932AC004AF46D /* home_view.swift */; };
+		69AD09702F393EE0004AF46D /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD096F2F393EE0004AF46D /* TeamViewModel.swift */; };
 		BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0378B22F15AC5900304FD2 /* Leaders.swift */; };
 		BF3D2C022F2BB20F00FE6063 /* progress_bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */; };
 		BF3D2C042F2C17BC00FE6063 /* GameSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C032F2C17B300FE6063 /* GameSummaryViewModel.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		692CCC5E2F16C95A0007A09B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		69AD096D2F3932AC004AF46D /* home_view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = home_view.swift; sourceTree = "<group>"; };
+		69AD096F2F393EE0004AF46D /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		BF0378B22F15AC5900304FD2 /* Leaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaders.swift; sourceTree = "<group>"; };
 		BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progress_bar.swift; sourceTree = "<group>"; };
 		BF3D2C032F2C17B300FE6063 /* GameSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummaryViewModel.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				BF3D2C152F2EB2F100FE6063 /* PlayerStore.swift */,
 				BF3D2C032F2C17B300FE6063 /* GameSummaryViewModel.swift */,
 				EF9F4E122F1E7C6E00D1EC5A /* ViewModel.swift */,
+				69AD096F2F393EE0004AF46D /* TeamViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				BFE279502F3226F600BBF95E /* LimiteSuperado.swift in Sources */,
 				EF82B8472F1541F000AA058C /* Team.swift in Sources */,
 				BFE279462F31CCFB00BBF95E /* adding_players.swift in Sources */,
+				69AD09702F393EE0004AF46D /* TeamViewModel.swift in Sources */,
 				BFE279552F32389000BBF95E /* PlayerCard.swift in Sources */,
 				BFDA08992F30F542006BFAFD /* profile_row.swift in Sources */,
 				BF3D2C0A2F2D619E00FE6063 /* QuarterScores.swift in Sources */,

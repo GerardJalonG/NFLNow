@@ -5,6 +5,8 @@ struct home_view: View {
     @EnvironmentObject var teamStore: TeamStore
     @StateObject private var teamsViewModel = ViewModel()
 
+    @State private var showTeams = false
+
     private var teams: [Team] { teamsViewModel.teams }
 
     var body: some View {
@@ -22,9 +24,19 @@ struct home_view: View {
                             .foregroundColor(Color(.label))
 
                         if teamStore.teamIDs.isEmpty {
-                            Text("No teams selected")
-                                .foregroundColor(Color(.secondaryLabel))
-                                .padding(.top, 40)
+                            VStack(spacing: 10) {
+                                Text("No teams selected")
+                                    .foregroundColor(Color(.secondaryLabel))
+                                    .padding(.top, 40)
+
+                                Button(action: { showTeams = true }) {
+                                    Text("Añadir equipos favoritos")
+                                        .font(.body)
+                                        .foregroundColor(Color(.systemBlue))
+                                }
+                                .padding(.top, 6)
+                            }
+                            .frame(maxWidth: .infinity)
                         } else {
                             ForEach(teamStore.teamIDs, id: \.self) { id in
                                 if let team = teams.first(where: { $0.id == id }) {
@@ -42,6 +54,9 @@ struct home_view: View {
                 if teams.isEmpty {
                     teamsViewModel.fetchAllTeams()
                 }
+            }
+            .sheet(isPresented: $showTeams) {
+                AddingTeamsView()
             }
         }
     }
