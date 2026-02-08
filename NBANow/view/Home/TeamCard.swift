@@ -25,7 +25,7 @@ struct TeamHomeCard: View {
                         .scaledToFit()
                         .frame(height: 120)
                         .frame(maxWidth: .infinity)
-                        .background(Color(.gray))
+                        .background(Color(hex: team.color))
                 }
 
                 HStack {

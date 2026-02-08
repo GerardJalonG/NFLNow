@@ -115,7 +115,7 @@ struct AddingPlayersView: View {
 struct AddingPlayersView_Previews: PreviewProvider {
     static var previews: some View {
         AddingPlayersView(
-            isPresented: .constant(true),
+            isPresented: .constant(true)
         )
         .environmentObject(PlayerStore())
     }

@@ -79,7 +79,7 @@ struct default_profile: View {
         }
         .sheet(isPresented: $showPlayers) {
             AddingPlayersView(
-                isPresented: $showPlayers,
+                isPresented: $showPlayers
             )
             .environmentObject(createdPlayersStore)
         }

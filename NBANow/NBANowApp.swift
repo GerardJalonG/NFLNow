@@ -1,22 +1,13 @@
-//
-//  NBANowApp.swift
-//  NBANow
-//
-//  Created by alumne on 12/01/2026.
-//
-
 import SwiftUI
 
 @main
 struct NBANowApp: App {
-    let persistenceController = PersistenceController.shared
     @StateObject private var storePlayers = PlayerStore()
     @StateObject private var teamStore = TeamStore()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            SampleView()
                 .environmentObject(storePlayers)
                 .environmentObject(teamStore)
         }

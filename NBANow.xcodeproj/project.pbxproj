@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692CCC5E2F16C95A0007A09B /* APIError.swift */; };
+		69AD096E2F3932AC004AF46D /* home_view.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AD096D2F3932AC004AF46D /* home_view.swift */; };
 		BF0378B32F15AC5F00304FD2 /* Leaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0378B22F15AC5900304FD2 /* Leaders.swift */; };
 		BF3D2C022F2BB20F00FE6063 /* progress_bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */; };
 		BF3D2C042F2C17BC00FE6063 /* GameSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C032F2C17B300FE6063 /* GameSummaryViewModel.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		692CCC5E2F16C95A0007A09B /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		69AD096D2F3932AC004AF46D /* home_view.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = home_view.swift; sourceTree = "<group>"; };
 		BF0378B22F15AC5900304FD2 /* Leaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaders.swift; sourceTree = "<group>"; };
 		BF3D2C012F2BB20F00FE6063 /* progress_bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progress_bar.swift; sourceTree = "<group>"; };
 		BF3D2C032F2C17B300FE6063 /* GameSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummaryViewModel.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				BFE279542F32388C00BBF95E /* PlayerCard.swift */,
 				BFE279522F3236E300BBF95E /* TeamCard.swift */,
+				69AD096D2F3932AC004AF46D /* home_view.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -370,8 +373,9 @@
 		EFF90EB62F153F7100E1F807 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					EFF90EBD2F153F7100E1F807 = {
 						CreatedOnToolsVersion = 12.4;
@@ -429,6 +433,7 @@
 				BFD1B6C92F2F9B3E00425B07 /* TeamStore.swift in Sources */,
 				BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */,
 				EF82B84C2F15557900AA058C /* Roster.swift in Sources */,
+				69AD096E2F3932AC004AF46D /* home_view.swift in Sources */,
 				BFD1B6CD2F2F9E4E00425B07 /* adding_team.swift in Sources */,
 				BFDA08A12F3159E4006BFAFD /* PlayerListItem.swift in Sources */,
 				BF3D2C082F2D560B00FE6063 /* GameHeader.swift in Sources */,
@@ -503,6 +508,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -564,6 +570,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -589,6 +596,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"NBANow/Preview Content\"";
+				DEVELOPMENT_TEAM = 35PKLDU248;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NBANow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -610,6 +618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"NBANow/Preview Content\"";
+				DEVELOPMENT_TEAM = 35PKLDU248;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NBANow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
