@@ -148,4 +148,42 @@ struct NFLService {
 
         }.resume()
     }
+    
+    static func fetchGameScoreboard(
+        completion: @escaping (Result<ScoreBoard, APIError>) -> Void
+    ){
+        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
+            if let error = error {
+                completion(.failure(.urlSessionError(error)))
+                return
+            }
+
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let decoded = try decoder.decode(ScoreBoard.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                print("DECODE ERROR (SCOREBOARD):", error)
+                completion(.failure(.decodingFailed(error)))
+            }
+
+        }.resume()
+    }
+
 }

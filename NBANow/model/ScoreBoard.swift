@@ -22,7 +22,7 @@ struct Week: Codable {
 Partidos que se disputan dicha fecha filtrada - default_Calendar
  */
 struct Events: Codable {
-    let eventsGames: [EventsGames]
+    let events: [EventsGames]
 }
 
 struct EventsGames: Codable {
@@ -46,8 +46,18 @@ struct Competitors: Codable {
     let id: String
     let homeAway: String
     let winner: Bool
+    let team: TeamMini
+    let score: String
     let linescores: [LineScores]
 }
+
+struct TeamMini: Codable {
+    let id: String
+    let abbreviation: String
+    let displayName: String
+    let logo: String?
+}
+
 
 /*
  Recursos para mostrar "Final" cuando el partido se ha terminado - deafult_Calendar & game_Stats

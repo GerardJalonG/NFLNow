@@ -3,7 +3,6 @@ import Foundation
 final class TeamDetailViewModel: ObservableObject {
     @Published private(set) var messageError: String?
     @Published private(set) var team: Team?
-    @Published private(set) var roster: Roster?
 
     private let baseURL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
 
