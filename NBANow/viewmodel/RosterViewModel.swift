@@ -1,26 +1,21 @@
 import Foundation
 
-final class TeamDetailViewModel: ObservableObject {
+final class RosterViewModel: ObservableObject {
     @Published private(set) var messageError: String?
-    @Published private(set) var team: Team?
     @Published private(set) var roster: Roster?
 
-    private let baseURL = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
-
-    func fetchTeam(id: String) {
-        let urlString = "\(baseURL)/teams/\(id)"
-
-        NFLService.fetchTeamDetails(urlString: urlString) { result in
+    func fetchRoster(teamId: String) {
+        NFLService.fetchTeamRosterGroups(teamId: teamId) { result in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.messageError = error.localizedDescription
-                    self.team = nil
+                    self.roster = nil
                 }
 
-            case .success(let team):
+            case .success(let roster):
                 DispatchQueue.main.async {
-                    self.team = team
+                    self.roster = roster
                     self.messageError = nil
                 }
             }

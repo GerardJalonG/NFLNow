@@ -45,21 +45,26 @@ struct NFLService {
         }.resume()
     }
     
-    static func fetchTeamDetails(urlString: String, completion: @escaping (Result<Team, Error>) -> Void) {
-
+    static func fetchTeamDetails(
+        urlString: String,
+        completion: @escaping (Result<Team, APIError>) -> Void
+    ) {
         guard let url = URL(string: urlString) else {
-            completion(.failure(NSError(domain: "BadURL", code: 0)))
+            completion(.failure(.invalidURL))
             return
         }
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(.urlSessionError(error)))
                 return
             }
 
-            guard let data = data else {
-                completion(.failure(NSError(domain: "NoData", code: 0)))
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
                 return
             }
 
@@ -67,8 +72,10 @@ struct NFLService {
                 let decoded = try JSONDecoder().decode(TeamDetail.self, from: data)
                 completion(.success(decoded.team))
             } catch {
-                completion(.failure(error))
+                print("DECODE ERROR:", error)
+                completion(.failure(.decodingFailed(error)))
             }
+
         }.resume()
     }
     
@@ -100,6 +107,42 @@ struct NFLService {
                 let decoded = try JSONDecoder().decode(GameSummaryData.self, from: data)
                 completion(.success(decoded))
             } catch {
+                completion(.failure(.decodingFailed(error)))
+            }
+
+        }.resume()
+    }
+    
+    static func fetchTeamRosterGroups(
+        teamId: String,
+        completion: @escaping (Result<Roster, APIError>) -> Void
+    ) {
+        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/\(teamId)/roster"
+
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+
+            if let error = error {
+                completion(.failure(.urlSessionError(error)))
+                return
+            }
+
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(Roster.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                print("DECODE ERROR (ROSTER):", error)
                 completion(.failure(.decodingFailed(error)))
             }
 

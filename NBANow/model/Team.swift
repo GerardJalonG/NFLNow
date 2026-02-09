@@ -24,7 +24,7 @@ struct Team: Codable, Identifiable  {
     let id: String
     let abbreviation: String
     let displayName: String
-    let shortDisplayName: String
+    let shortDisplayName: String?
     let location: String
     let color: String
     let alternateColor: String
@@ -44,7 +44,7 @@ struct LogoItem: Codable {
 
 struct Franchise: Codable {
     let id: String
-    let fullName: String
+    let name: String
     let venue: Venue
 }
 

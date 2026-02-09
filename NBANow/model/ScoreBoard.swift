@@ -3,6 +3,12 @@ import Foundation
 /*
  Recursos para hacer el slider de filtrado de fecha para ver los partidos de la semana / mes - default_Calendar
  */
+
+struct ScoreBoard: Codable {
+    let season: Season
+    let week: Week
+    let events: [Events]
+}
 struct Season: Codable {
     let type: Int
     let year: Int

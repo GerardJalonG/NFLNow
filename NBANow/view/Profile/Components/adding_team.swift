@@ -14,25 +14,24 @@ struct AddingTeamsView: View {
     @StateObject private var teamsViewModel = ViewModel()
 
     @State private var limitError: LimitReachedError?
+    
 
     private var teams: [Team] {
         teamsViewModel.teams
     }
 
     var body: some View {
+        
+        let teamsPorLetra = Dictionary(grouping: teams) { team in
+            team.displayName.first!
+        }
+        let letrasOrdenadas = teamsPorLetra.keys.sorted()
+        
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
+            List {
 
-                    Divider()
-
-                    Text("Following")
-                        .foregroundColor(.gray)
-                        .font(.title3)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-
-                    ScrollView(.horizontal) {
+                Section {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(teamStore.teamIDs, id: \.self) { id in
                                 if let team = teams.first(where: { $0.id == id }),
@@ -52,31 +51,31 @@ struct AddingTeamsView: View {
                             }
                         }
                         .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+                        .padding(.vertical, 8)
                     }
+                } header: {
+                    Text("Following")
+                        .foregroundColor(.gray)
+                        .font(.title3)
+                        .padding(.top, 4)
+                }
 
-                    Divider()
-
-                    ForEach(teams) { team in
-                        TeamRowView(
-                            team: team,
-                            isFollowing: teamStore.isFollowing(team),
-                            anadir: {
-                                let added = teamStore.add(team)
-                                if !added {
-                                    limitError = .maxTeams
-                                }
-                            },
-                            eliminar: {
-                                teamStore.remove(team)
+                Section {
+                    ForEach(letrasOrdenadas, id: \.self) { letra in
+                        Section(header: Text(String(letra))) {
+                            ForEach(teamsPorLetra[letra]!) { team in
+                                TeamRowView(
+                                    team: team,
+                                    isFollowing: teamStore.isFollowing(team),
+                                    anadir: { teamStore.add(team) },
+                                    eliminar: { teamStore.remove(team) }
+                                )
                             }
-                        )
-
-                        Divider()
-                            .padding(.leading, 16)
+                        }
                     }
                 }
             }
+            .listStyle(.insetGrouped)
             .navigationTitle("My Teams")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {

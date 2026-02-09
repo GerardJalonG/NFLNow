@@ -9,6 +9,7 @@ struct team_info: View {
     private var pdf: Double { pag - pfo }
     
     @StateObject private var vm = TeamDetailViewModel()
+    @StateObject private var rvm = RosterViewModel()
 
     private var t: Team { vm.team ?? team }
     
@@ -86,15 +87,39 @@ struct team_info: View {
                     Text(vm.messageError ?? "Cargando estadísticas…")
                         .foregroundColor(.secondary)
                 }
+                
+                if let roster = rvm.roster {
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("ROSTER").bold()
+
+                        ForEach(roster.athletes, id: \.position) { group in
+                            Text(group.position.uppercased())
+                                .font(.headline)
+                                .padding(.top, 8)
+
+                            ForEach(group.items) { player in
+                                PlayerRow(player: player)
+                            }
+                        }
+                    }
+                } else {
+                    Text(rvm.messageError ?? "Cargando roster…")
+                        .foregroundColor(.secondary)
+                }
             }
             .padding(.vertical, 8)
             .padding(.horizontal)
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
-            if vm.team == nil {
-                vm.fetchTeam(id: team.id)
-            }
+            print("TEAM FROM HOME:", team.id, team.displayName, team.record as Any, team.franchise as Any, team.standingSummary as Any)
+            vm.fetchTeam(id: team.id)
+            rvm.fetchRoster(teamId: team.id)
+        }
+        .onReceive(vm.$team) { newValue in
+            print("TEAM FROM DETAIL:", newValue as Any)
         }
     }
 }
+
+
