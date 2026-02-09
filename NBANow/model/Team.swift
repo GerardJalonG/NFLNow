@@ -49,13 +49,13 @@ struct Franchise: Codable {
 }
 
 struct Record: Codable {
-    let items: [RecordItem]
+    let items: [RecordItem]?
 }
 
 struct RecordItem: Codable {
-    let type: String
-    let summary: String
-    let stats: [RecordStat]
+    let type: String?
+    let summary: String?
+    let stats: [RecordStat]?
 }
 
 struct RecordStat: Codable {

@@ -46,12 +46,3 @@ struct TeamHomeCard: View {
         }
     }
 }
-
-struct TeamHomeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            TeamHomeCard(team: .mock)
-                .padding()
-        }
-    }
-}
