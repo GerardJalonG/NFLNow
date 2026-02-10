@@ -24,7 +24,6 @@ struct GameStatsView: View {
 
                     QuarterScoresView(competition: competition)
 
-                    // rosters (home + away)
 
                 }
                 .padding(.horizontal, 16)

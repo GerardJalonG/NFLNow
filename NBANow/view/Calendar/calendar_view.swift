@@ -24,10 +24,10 @@ struct calendar_view: View {
                                 .padding(.top, 40)
                                 .frame(maxWidth: .infinity)
                         } else if let sb = vm.sb,
-                                  let game = sb.events.first?.events.first {
+                                  let game = sb.events.first {
                             GameHomeCard(
                                 game: game,
-                                weekNumber: sb.week.number
+                                weekNumber: sb.week?.number ?? 0
                             )
                             .padding(.horizontal, 20)
                         } else {

@@ -150,7 +150,7 @@ struct NFLService {
     }
     
     static func fetchGameScoreboard(
-        completion: @escaping (Result<ScoreBoard, APIError>) -> Void
+        completion: @escaping (Result<ScoreBoardResponse, APIError>) -> Void
     ){
         let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
@@ -175,8 +175,27 @@ struct NFLService {
 
             do {
                 let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let decoded = try decoder.decode(ScoreBoard.self, from: data)
+
+                let iso = ISO8601DateFormatter()
+                iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+                let isoNoFrac = ISO8601DateFormatter()
+                isoNoFrac.formatOptions = [.withInternetDateTime]
+
+                decoder.dateDecodingStrategy = .custom { d in
+                    let c = try d.singleValueContainer()
+                    let s = try c.decode(String.self)
+
+                    if let dt = iso.date(from: s) { return dt }
+                    if let dt = isoNoFrac.date(from: s) { return dt }
+
+                    throw DecodingError.dataCorruptedError(
+                        in: c,
+                        debugDescription: "Invalid date: \(s)"
+                    )
+                }
+
+                let decoded = try decoder.decode(ScoreBoardResponse.self, from: data)
                 completion(.success(decoded))
             } catch {
                 print("DECODE ERROR (SCOREBOARD):", error)

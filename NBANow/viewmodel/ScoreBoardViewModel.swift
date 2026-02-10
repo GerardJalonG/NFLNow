@@ -2,7 +2,7 @@ import Foundation
 
 final class ScoreBoardViewModel: ObservableObject {
     @Published private(set) var messageError: String?
-    @Published private(set) var sb: ScoreBoard?
+    @Published private(set) var sb: ScoreBoardResponse?
 
     func fetchScoreBoard() {
         NFLService.fetchGameScoreboard { result in

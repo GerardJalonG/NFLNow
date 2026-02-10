@@ -1,84 +1,144 @@
 import Foundation
 
-/*
- Recursos para hacer el slider de filtrado de fecha para ver los partidos de la semana / mes - default_Calendar
- */
-
-struct ScoreBoard: Codable {
-    let season: Season
-    let week: Week
-    let events: [Events]
+struct ScoreBoardResponse: Codable {
+    let leagues: [LeagueScoreboard]?
+    let season: Season?
+    let week: Week?
+    let events: [Event]
+    let provider: Provider?
 }
+
+struct LeagueScoreboard: Codable {
+    let id: String?
+    let uid: String?
+    let name: String?
+    let abbreviation: String?
+    let slug: String?
+    let season: LeagueSeason?
+    let calendarType: String?
+    let calendarStartDate: String?
+    let calendarEndDate: String?
+    let calendar: [CalendarSection]?
+}
+
+struct LeagueSeason: Codable {
+    let year: Int?
+    let startDate: String?
+    let endDate: String?
+    let displayName: String?
+    let type: LeagueSeasonType?
+}
+
+struct LeagueSeasonType: Codable {
+    let id: String?
+    let type: Int?
+    let name: String?
+    let abbreviation: String?
+}
+
+struct CalendarSection: Codable {
+    let label: String?
+    let value: String?
+    let startDate: String?
+    let endDate: String?
+    let entries: [CalendarEntry]?
+}
+
+struct CalendarEntry: Codable {
+    let label: String?
+    let alternateLabel: String?
+    let detail: String?
+    let value: String?
+    let startDate: String?
+    let endDate: String?
+}
+
 struct Season: Codable {
-    let type: Int
-    let year: Int
+    let type: Int?
+    let year: Int?
 }
 
 struct Week: Codable {
-    let number: Int
+    let number: Int?
 }
 
-/*
-Partidos que se disputan dicha fecha filtrada - default_Calendar
- */
-struct Events: Codable {
-    let events: [EventsGames]
-}
-
-struct EventsGames: Codable {
+struct Event: Codable {
     let id: String
-    let date: Date
-    let name: String
-    let shortName: String
-    let competitions: [Competitions]
+    let uid: String?
+    let date: String
+    let name: String?
+    let shortName: String?
+    let competitions: [Competition]?
+    let status: Status?
+    let links: [Link]?
 }
 
-/*
- Recursos para "acentuar" los resultados del equipo ganador (gracias al booleano) y para el posicionamiento de los equipos en la tarjeta (deracha o izquierda)
- */
-struct Competitions: Codable {
-    let id: String
-    let competitors: [Competitors]
-    let status: Status
+struct Competition: Codable {
+    let id: String?
+    let uid: String?
+    let date: String?
+    let attendance: Int?
+    let neutralSite: Bool?
+    let venue: Venue?
+    let competitors: [Competitor]?
+    let notes: [Note]?
+    let status: Status? 
 }
 
-struct Competitors: Codable {
-    let id: String
-    let homeAway: String
-    let winner: Bool
-    let team: TeamMini
-    let score: String
-    let linescores: [LineScores]
+struct Competitor: Codable {
+    let id: String?
+    let homeAway: String?
+    let winner: Bool?
+    let team: TeamMini?
+    let score: String?
+    let linescores: [LineScore]?
 }
 
 struct TeamMini: Codable {
-    let id: String
-    let abbreviation: String
-    let displayName: String
+    let id: String?
+    let abbreviation: String?
+    let displayName: String?
     let logo: String?
 }
 
+struct LineScore: Codable {
+    let value: Double?
+    let displayValue: String?
+    let period: Int?
+}
 
-/*
- Recursos para mostrar "Final" cuando el partido se ha terminado - deafult_Calendar & game_Stats
- */
 struct Status: Codable {
-    let type: TypeStatus
+    let clock: Double?
+    let displayClock: String?
+    let period: Int?
+    let type: TypeStatus?
 }
 
 struct TypeStatus: Codable {
-    let description: String
+    let id: String?
+    let name: String?
+    let state: String?
+    let completed: Bool?
+    let description: String?
+    let detail: String?
+    let shortDetail: String?
 }
 
-/*
- Recursos para la muestra de puntos por cuartos - Game_Stats
- */
-struct LineScores: Codable {
-    let lineScoresItems: LineScoresItems
+struct Note: Codable {
+    let type: String?
+    let headline: String?
 }
 
-struct LineScoresItems: Codable {
-    let value: Int
-    let displayValue: String
-    let period: Int
+struct Link: Codable {
+    let href: String?
+    let text: String?
+    let shortText: String?
+    let isExternal: Bool?
+    let isPremium: Bool?
+}
+
+struct Provider: Codable {
+    let id: String?
+    let name: String?
+    let displayName: String?
 }
