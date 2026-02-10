@@ -25,10 +25,11 @@ struct calendar_view: View {
                                 .frame(maxWidth: .infinity)
                         } else if let sb = vm.sb,
                                   let game = sb.events.first {
-                            GameHomeCard(
-                                game: game,
-                                weekNumber: sb.week?.number ?? 0
-                            )
+                            NavigationLink {
+                                GameStatsView(eventId: game.id)
+                            } label: {
+                                GameHomeCard(game: game, weekNumber: sb.week?.number ?? 0)
+                            }
                             .padding(.horizontal, 20)
                         } else {
                             VStack(spacing: 10) {

@@ -160,6 +160,40 @@ struct NFLService {
         }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(.urlSessionError(error)))
+                return
+            }
+
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode),
+                  let data = data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+
+            do {
+                let decoded = try JSONDecoder().decode(ScoreBoardResponse.self, from: data)
+                completion(.success(decoded))
+            } catch {
+                print("DECODE ERROR (SCOREBOARD):", error)
+                completion(.failure(.decodingFailed(error)))
+            }
+        }.resume()
+    }
+    
+    static func fetchSummary(
+        eventId: String,
+        completion: @escaping (Result<GameSummaryData, APIError>) -> Void
+    ) {
+        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=\(eventId)"
+
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
 
             if let error = error {
                 completion(.failure(.urlSessionError(error)))
@@ -174,31 +208,10 @@ struct NFLService {
             }
 
             do {
-                let decoder = JSONDecoder()
-
-                let iso = ISO8601DateFormatter()
-                iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
-                let isoNoFrac = ISO8601DateFormatter()
-                isoNoFrac.formatOptions = [.withInternetDateTime]
-
-                decoder.dateDecodingStrategy = .custom { d in
-                    let c = try d.singleValueContainer()
-                    let s = try c.decode(String.self)
-
-                    if let dt = iso.date(from: s) { return dt }
-                    if let dt = isoNoFrac.date(from: s) { return dt }
-
-                    throw DecodingError.dataCorruptedError(
-                        in: c,
-                        debugDescription: "Invalid date: \(s)"
-                    )
-                }
-
-                let decoded = try decoder.decode(ScoreBoardResponse.self, from: data)
+                let decoded = try JSONDecoder().decode(GameSummaryData.self, from: data)
                 completion(.success(decoded))
             } catch {
-                print("DECODE ERROR (SCOREBOARD):", error)
+                print("DECODE ERROR (SUMMARY):", error)
                 completion(.failure(.decodingFailed(error)))
             }
 
