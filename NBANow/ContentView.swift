@@ -22,6 +22,7 @@ struct SampleView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
+            
 
             calendar_view()
                 .tabItem {
