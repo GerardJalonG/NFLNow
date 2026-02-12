@@ -14,7 +14,7 @@ struct CalendarView: View {
     }
 }
 
-struct SampleView: View {
+struct ContentView: View {
     var body: some View {
         TabView {
             home_view()
@@ -41,7 +41,7 @@ struct SampleView: View {
 
 struct SampleView_Previews: PreviewProvider {
     static var previews: some View {
-        SampleView()
+        ContentView()
             .environmentObject(TeamStore())
             .environmentObject(PlayerStore())
     }

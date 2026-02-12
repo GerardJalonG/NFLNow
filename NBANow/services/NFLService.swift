@@ -3,11 +3,11 @@ import Foundation
 struct NFLService {
 
     static func fetchTeams(
-        urlString: String,
         completion: @escaping (Result<[Team], APIError>) -> Void
     ) {
-
-        guard let url = URL(string: "\(urlString)/teams") else {
+        let urlString = "\(APIConstants.baseURL)/teams"
+        
+        guard let url = URL(string: "\(urlString)") else {
             completion(.failure(.invalidURL))
             return
         }
@@ -46,9 +46,11 @@ struct NFLService {
     }
     
     static func fetchTeamDetails(
-        urlString: String,
+        teamId: String,
         completion: @escaping (Result<Team, APIError>) -> Void
     ) {
+        let urlString = "\(APIConstants.baseURL)/teams/\(teamId)"
+        
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
@@ -80,11 +82,13 @@ struct NFLService {
     }
     
     static func fetchGameSummary(
-        urlString: String,
         eventId: String,
         completion: @escaping (Result<GameSummaryData, APIError>) -> Void
     ) {
-        guard let url = URL(string: "\(urlString)/summary?event=\(eventId)") else {
+
+        let urlString = "\(APIConstants.baseURL)/summary?event=\(eventId)"
+
+        guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
         }
@@ -107,17 +111,19 @@ struct NFLService {
                 let decoded = try JSONDecoder().decode(GameSummaryData.self, from: data)
                 completion(.success(decoded))
             } catch {
+                print("DECODE ERROR (SUMMARY):", error)
                 completion(.failure(.decodingFailed(error)))
             }
 
         }.resume()
     }
+
     
     static func fetchTeamRosterGroups(
         teamId: String,
         completion: @escaping (Result<Roster, APIError>) -> Void
     ) {
-        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/\(teamId)/roster"
+        let urlString = "\(APIConstants.baseURL)/teams/\(teamId)/roster"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
@@ -152,7 +158,7 @@ struct NFLService {
     static func fetchGameScoreboard(
         completion: @escaping (Result<ScoreBoardResponse, APIError>) -> Void
     ){
-        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+        let urlString = "\(APIConstants.baseURL)/scoreboard"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
@@ -186,7 +192,7 @@ struct NFLService {
         eventId: String,
         completion: @escaping (Result<GameSummaryData, APIError>) -> Void
     ) {
-        let urlString = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=\(eventId)"
+        let urlString = "\(APIConstants.baseURL)/summary?event=\(eventId)"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))

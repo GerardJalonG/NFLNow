@@ -146,15 +146,3 @@ enum PlayerAvatar: String, CaseIterable, Codable, Equatable, Identifiable {
 
     var id: String { rawValue }
 }
-
-extension CreatedPlayer {
-    static let mock = CreatedPlayer(
-        id: UUID().uuidString,
-        name: "Tyler Allgeier",
-        age: 24,
-        jerseyNumber: "25",
-        position: .rb,
-        team: .atl,
-        avatar: .star
-    )
-}

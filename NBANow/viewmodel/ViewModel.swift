@@ -5,8 +5,7 @@ class ViewModel: ObservableObject {
     @Published private(set) var teams = [Team]()
     
     func fetchAllTeams(){
-        let apiurl = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
-        NFLService.fetchTeams(urlString: apiurl){result in
+        NFLService.fetchTeams(){result in
             switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {

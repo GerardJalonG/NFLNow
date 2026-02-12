@@ -7,7 +7,7 @@ struct NBANowApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SampleView()
+            ContentView()
                 .environmentObject(storePlayers)
                 .environmentObject(teamStore)
         }

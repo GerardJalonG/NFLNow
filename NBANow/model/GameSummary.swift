@@ -2,8 +2,6 @@ import Foundation
 
 struct GameSummaryData: Codable {
     let header: GameHeader?
-    let winprobability: [WinProbability]?
-    let gameInfo: GameInfo?
     let boxscore: Boxscore?
 }
 
@@ -35,18 +33,18 @@ struct TeamStatistic: Codable {
     enum CodingKeys: String, CodingKey { case name, displayValue, value, label }
 
     init(from decoder: Decoder) throws {
-        let c = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        name = try c.decode(String.self, forKey: .name)
-        displayValue = try? c.decode(String.self, forKey: .displayValue)
-        label = try? c.decode(String.self, forKey: .label)
+        name = try container.decode(String.self, forKey: .name)
+        displayValue = try? container.decode(String.self, forKey: .displayValue)
+        label = try? container.decode(String.self, forKey: .label)
 
-        if let d = try? c.decode(Double.self, forKey: .value) {
-            value = d
-        } else if let i = try? c.decode(Int.self, forKey: .value) {
-            value = Double(i)
-        } else if let s = try? c.decode(String.self, forKey: .value) {
-            value = Double(s.replacingOccurrences(of: ",", with: "."))
+        if let doubleValue = try? container.decode(Double.self, forKey: .value) {
+            value = doubleValue
+        } else if let intValue = try? container.decode(Int.self, forKey: .value) {
+            value = Double(intValue)
+        } else if let stringValue = try? container.decode(String.self, forKey: .value) {
+            value = Double(stringValue.replacingOccurrences(of: ",", with: "."))
         } else {
             value = nil
         }
@@ -59,16 +57,7 @@ struct GameHeader: Codable {
 }
 
 struct GameCompetition: Codable {
-    let status: GameStatus
     let competitors: [GameCompetitor]
-}
-
-struct GameStatus: Codable {
-    let type: GameStatusType
-}
-
-struct GameStatusType: Codable {
-    let description: String
 }
 
 struct GameCompetitor: Codable {
@@ -93,17 +82,4 @@ extension GameCompetitor {
         }
         return "\(total)"
     }
-}
-
-struct GameInfo: Codable {
-    let officials: [Official]
-}
-
-struct Official: Codable {
-    let displayName: String
-}
-
-struct WinProbability: Codable {
-    let playId: String
-    let homeWinPercentage: Decimal
 }

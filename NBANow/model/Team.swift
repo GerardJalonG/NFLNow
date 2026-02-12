@@ -65,10 +65,4 @@ struct RecordStat: Codable {
 
 struct Venue: Codable {
     let fullName: String
-    let address: Address
-}
-
-struct Address: Codable {
-    let city: String
-    let state: String
 }

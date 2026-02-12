@@ -12,9 +12,7 @@ class GameSummaryViewModel: ObservableObject {
     @Published private(set) var summary: GameSummaryData?
 
     func fetchGameSummary(eventId: String) {
-        let apiurl = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
-
-        NFLService.fetchGameSummary(urlString: apiurl, eventId: eventId) { result in
+        NFLService.fetchGameSummary(eventId: eventId) { result in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
