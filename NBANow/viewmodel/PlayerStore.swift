@@ -10,7 +10,7 @@ final class PlayerStore: ObservableObject {
 
     @Published private(set) var players: [CreatedPlayer] = []
 
-    private let storage = DefaultsStorage.shared
+    private let storage = DefaultStorage.shared
     private let maxPlayers = 5
 
     init() {

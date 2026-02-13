@@ -1,10 +1,3 @@
-//
-//  GameHeader.swift
-//  NBANow
-//
-//  Created by Dean Martin Garcia on 30/1/26.
-//
-
 import SwiftUI
 import Foundation
 import KingfisherSwiftUI
@@ -22,52 +15,59 @@ struct GameHeaderView: View {
     }
 
     var body: some View {
+        HStack(alignment: .center, spacing: 18) {
 
-        HStack(alignment: .center, spacing: 16) {
-            VStack(spacing: 6) {
+            VStack(spacing: 8) {
                 if let logoURL = away?.team.logos.first?.href,
                    let url = URL(string: logoURL) {
                     KFImage(url)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 44, height: 44)
+                        .frame(width: 54, height: 54)
                 }
 
                 Text(away?.team.displayName ?? "-")
-                    .font(.caption)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.85)
 
                 Text(away?.score ?? "-")
-                    .font(.title3)
-                    .fontWeight((away?.winner ?? false) ? .semibold : .regular)
+                    .font(.system(size: 30, weight: (away?.winner ?? false) ? .bold : .semibold))
+                    .foregroundColor((away?.winner ?? false) ? .primary : .secondary)
             }
+            .frame(maxWidth: .infinity)
 
-            VStack(spacing: 6) {
-                Text((competition.status.type.description).uppercased())
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.gray)
-            }.padding(24)
+            Text((competition.status.type.description).uppercased())
+                .font(.footnote)
+                .fontWeight(.bold)
+                .foregroundColor(.secondary)
+                .frame(minWidth: 80)
 
-            VStack(spacing: 6) {
-
+            VStack(spacing: 8) {
                 if let logoURL = home?.team.logos.first?.href,
                    let url = URL(string: logoURL) {
                     KFImage(url)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 44, height: 44)
+                        .frame(width: 54, height: 54)
                 }
 
                 Text(home?.team.displayName ?? "-")
-                    .font(.caption)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.85)
 
                 Text(home?.score ?? "-")
-                    .font(.title3)
-                    .fontWeight((home?.winner ?? false) ? .semibold : .regular)
+                    .font(.system(size: 30, weight: (home?.winner ?? false) ? .bold : .semibold))
+                    .foregroundColor((home?.winner ?? false) ? .primary : .secondary)
             }
+            .frame(maxWidth: .infinity)
         }
-        .padding(12)
+        .padding(.vertical, 10)
+        .padding(.horizontal, 6)
     }
 }

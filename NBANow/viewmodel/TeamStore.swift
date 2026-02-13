@@ -10,7 +10,7 @@ final class TeamStore: ObservableObject {
 
     @Published private(set) var teamIDs: [String] = []
 
-    private let storage = DefaultsStorage.shared
+    private let storage = DefaultStorage.shared
     private let maxTeams = 5
 
     init() {

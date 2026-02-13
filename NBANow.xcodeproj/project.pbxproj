@@ -149,6 +149,8 @@
 		697C16E72F3E530A000CF249 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				BFDA08932F30EDE8006BFAFD /* storage */,
+				BFE279412F31CC7F00BBF95E /* errors */,
 				697C16E82F3E530F000CF249 /* constants */,
 			);
 			path = core;
@@ -383,8 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				697C16E72F3E530A000CF249 /* core */,
-				BFE279412F31CC7F00BBF95E /* errors */,
-				BFDA08932F30EDE8006BFAFD /* storage */,
 				EF9F4E152F1E7EFC00D1EC5A /* view */,
 				EF9F4E112F1E7C4E00D1EC5A /* viewmodel */,
 				692CCC5D2F16C9440007A09B /* services */,

@@ -1,10 +1,3 @@
-//
-//  game_stats.swift
-//  NBANow
-//
-//  Created by Dean Martin Garcia on 30/1/26.
-//
-
 import SwiftUI
 import Foundation
 
@@ -19,60 +12,88 @@ struct GameStatsView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+            ZStack {
+                Color(.systemBackground).ignoresSafeArea()
 
-                    if let error = vm.summaryError {
-                        Text(error)
-                            .foregroundColor(.red)
-                            .padding(.top, 40)
-                            .frame(maxWidth: .infinity)
+                ScrollView {
+                    VStack(spacing: 18) {
 
-                    } else if let competition {
-                        GameHeaderView(competition: competition)
+                        if let error = vm.summaryError {
+                            Text(error)
+                                .foregroundColor(.red)
+                                .padding(.top, 40)
+                                .frame(maxWidth: .infinity)
 
-                        Divider()
+                        } else if let competition {
 
-                        QuarterScoresView(competition: competition)
-                        
-                        if let teams = vm.summary?.boxscore?.teams {
+                            GameHeaderView(competition: competition)
+                                .padding(.top, 8)
+
                             Divider()
+                                .padding(.top, 4)
 
-                            VStack(spacing: 10) {
-                                ForEach(top5StatNames, id: \.self) { statName in
-                                    StatRowView(
-                                        statAbbr: statAbbr(statName),
-                                        teamAValue: statValue(teams: teams, homeAway: "away", statName: statName),
-                                        teamBValue: statValue(teams: teams, homeAway: "home", statName: statName)
-                                    )
+                            Text("QUARTER SCORES")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.secondary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top, 2)
 
-                                    Divider()
+                            QuarterScoresView(competition: competition)
+                                .padding(16)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(16)
+
+                            if let teams = vm.summary?.boxscore?.teams {
+
+                                Text("TEAM STATS")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.top, 6)
+
+                                VStack(spacing: 0) {
+                                    ForEach(top5StatNames, id: \.self) { statName in
+                                        StatRowView(
+                                            statAbbr: statAbbr(statName),
+                                            teamAValue: statValue(teams: teams, homeAway: "away", statName: statName),
+                                            teamBValue: statValue(teams: teams, homeAway: "home", statName: statName)
+                                        )
+                                        .padding(.vertical, 10)
+
+                                        if statName != top5StatNames.last {
+                                            Divider()
+                                        }
+                                    }
                                 }
+                                .padding(16)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(16)
+
+                            } else {
+                                VStack(spacing: 10) {
+                                    ProgressView()
+                                    Text("Cargando stats del partido…")
+                                        .foregroundColor(.secondary)
+                                }
+                                .padding(.top, 30)
+                                .frame(maxWidth: .infinity)
                             }
-                            .padding(18)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(14)
+
                         } else {
                             VStack(spacing: 10) {
                                 ProgressView()
-                                Text("Cargando stats del partido…")
+                                Text("Cargando resumen del partido…")
                                     .foregroundColor(.secondary)
                             }
-                            .padding(.top, 40)
+                            .padding(.top, 30)
                             .frame(maxWidth: .infinity)
                         }
-                    } else {
-                        VStack(spacing: 10) {
-                            ProgressView()
-                            Text("Cargando resumen del partido…")
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.top, 40)
-                        .frame(maxWidth: .infinity)
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {

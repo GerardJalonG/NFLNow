@@ -16,61 +16,74 @@ struct default_profile: View {
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
+            ZStack {
+                Color(.systemBackground).ignoresSafeArea()
 
-                profile_row(
-                    title: "MY TEAMS",
-                    showEdit: !teamStore.teamIDs.isEmpty,
-                    action: { showTeams = true }
-                )
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        
+                        Text("Profile")
+                            .font(.largeTitle).bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.horizontal, 20)
+                            .foregroundColor(Color(.label))
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(teamStore.teamIDs, id: \.self) { id in
-                            if let team = teams.first(where: { $0.id == id }),
-                               let logo = team.logos.first?.href,
-                               let url = URL(string: logo) {
+                        profile_row(
+                            title: "MY TEAMS",
+                            showEdit: !teamStore.teamIDs.isEmpty,
+                            action: { showTeams = true }
+                        )
 
-                                KFImage(url)
-                                    .resizable()
-                                    .scaledToFit()
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(teamStore.teamIDs, id: \.self) { id in
+                                    if let team = teams.first(where: { $0.id == id }),
+                                       let logo = team.logos.first?.href,
+                                       let url = URL(string: logo) {
+
+                                        KFImage(url)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 52, height: 52)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 16)
+                        }
+
+                        PlayerProfileRow(
+                            title: "MY PLAYERS",
+                            showEdit: !createdPlayersStore.players.isEmpty,
+                            onEdit: { showEditPlayers = true },
+                            onAdd: {
+                                if createdPlayersStore.players.count >= 5 {
+                                    limitError = .maxPlayers
+                                } else {
+                                    showPlayers = true
+                                }
+                            }
+                        )
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 12) {
+                                ForEach(createdPlayersStore.players) { player in
+                                    ZStack {
+                                        Circle().fill(Color.gray.opacity(0.2))
+                                        Text(player.avatar.rawValue)
+                                            .font(.title2)
+                                    }
                                     .frame(width: 52, height: 52)
+                                }
                             }
+                            .padding(.horizontal, 16)
                         }
+
+                        Spacer()
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.vertical, 24)
                 }
-
-                PlayerProfileRow(
-                    title: "MY PLAYERS",
-                    showEdit: !createdPlayersStore.players.isEmpty,
-                    onEdit: { showEditPlayers = true },
-                    onAdd: {
-                        if createdPlayersStore.players.count >= 5 {
-                            limitError = .maxPlayers
-                        } else {
-                            showPlayers = true
-                        }
-                    }
-                )
-
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(createdPlayersStore.players) { player in
-                            ZStack {
-                                Circle().fill(Color.gray.opacity(0.2))
-                                Text(player.avatar.rawValue)
-                                    .font(.title2)
-                            }
-                            .frame(width: 52, height: 52)
-                        }
-                    }
-                    .padding(.horizontal, 16)
-                }
-
-                Spacer()
             }
-            .navigationBarTitle("Profile", displayMode: .large)
+            .navigationBarTitle("", displayMode: .inline)
             .onAppear {
                 if teams.isEmpty {
                     teamsViewModel.fetchAllTeams()
@@ -95,13 +108,5 @@ struct default_profile: View {
                 )
             }
         }
-    }
-}
-
-struct default_profile_Previews: PreviewProvider {
-    static var previews: some View {
-        default_profile()
-            .environmentObject(TeamStore())
-            .environmentObject(PlayerStore())
     }
 }

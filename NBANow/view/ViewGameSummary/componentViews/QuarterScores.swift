@@ -1,10 +1,3 @@
-//
-//  QuarterScores.swift
-//  NBANow
-//
-//  Created by Dean Martin Garcia on 30/1/26.
-//
-
 import SwiftUI
 import Foundation
 import KingfisherSwiftUI
@@ -22,99 +15,71 @@ struct QuarterScoresView: View {
     }
 
     var body: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 12) {
+
             HStack {
-                Spacer()
-                    .frame(width: 40)
-
-                Text("Q1").frame(width: 44)
-                Text("Q2").frame(width: 44)
-                Text("Q3").frame(width: 44)
-                Text("Q4").frame(width: 44)
-                Text("T").frame(width: 44)
+                Spacer().frame(width: 34)
+                header("Q1"); header("Q2"); header("Q3"); header("Q4"); header("T")
             }
-            .font(.subheadline)
-            .foregroundColor(.gray)
 
-            competitorRowStats(TeamA: away, TeamB: home)
-
-            competitorRowStats(TeamA: home, TeamB: away)
+            row(team: away, opponent: home)
+            row(team: home, opponent: away)
         }
-        .padding(18)
-        .background(Color(.systemGray6))
-        .cornerRadius(14)
     }
 
-    private func competitorRowStats(
-        TeamA: GameCompetitor?,
-        TeamB: GameCompetitor?
-    ) -> some View {
+    private func header(_ text: String) -> some View {
+        Text(text)
+            .font(.caption)
+            .fontWeight(.semibold)
+            .foregroundColor(.secondary)
+            .frame(width: 44)
+    }
 
-        HStack {
-            if let logo = TeamA?.team.logos.first?.href,
+    private func row(team: GameCompetitor?, opponent: GameCompetitor?) -> some View {
+        HStack(spacing: 0) {
+
+            if let logo = team?.team.logos.first?.href,
                let url = URL(string: logo) {
                 KFImage(url)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 30, height: 30)
+                    .frame(width: 26, height: 26)
+                    .frame(width: 34)
             } else {
-                Spacer().frame(width: 30)
+                Spacer().frame(width: 34)
             }
-            
-            dataPointsText(
-                TeamA: TeamA?.linescores?[0].displayValue,
-                TeamB: TeamB?.linescores?[0].displayValue
-            )
 
-            dataPointsText(
-                TeamA: TeamA?.linescores?[1].displayValue,
-                TeamB: TeamB?.linescores?[1].displayValue
-            )
+            cell(team, opponent, 0)
+            cell(team, opponent, 1)
+            cell(team, opponent, 2)
+            cell(team, opponent, 3)
 
-            dataPointsText(
-                TeamA: TeamA?.linescores?[2].displayValue,
-                TeamB: TeamB?.linescores?[2].displayValue
-            )
-
-            dataPointsText(
-                TeamA: TeamA?.linescores?[3].displayValue,
-                TeamB: TeamB?.linescores?[3].displayValue
-            )
-
-            Text(TeamA?.totalScore() ?? "-")
-                .font(.title3)
-                .fontWeight(
-                    totalPointsText(
-                        TeamA: TeamA,
-                        TeamB: TeamB
-                    )
-                )
+            Text(team?.totalScore() ?? "-")
+                .font(.system(size: 18, weight: totalWeight(team, opponent)))
                 .frame(width: 44)
         }
     }
 
-    private func dataPointsText(
-        TeamA: String?,
-        TeamB: String?
-    ) -> some View {
+    private func cell(_ team: GameCompetitor?, _ opponent: GameCompetitor?, _ index: Int) -> some View {
+        let a = Int(team?.linescores?.safe(index)?.displayValue ?? "") ?? 0
+        let b = Int(opponent?.linescores?.safe(index)?.displayValue ?? "") ?? 0
 
-        let ValueTeamA = Int(TeamA ?? "") ?? 0
-        let ValueTeamB = Int(TeamB ?? "") ?? 0
-
-        return Text(TeamA ?? "-")
-            .font(.body)
-            .fontWeight(ValueTeamA > ValueTeamB ? .semibold : .regular)
+        return Text(team?.linescores?.safe(index)?.displayValue ?? "-")
+            .font(.system(size: 16, weight: a > b ? .semibold : .regular))
             .frame(width: 44)
     }
 
-    private func totalPointsText(
-        TeamA: GameCompetitor?,
-        TeamB: GameCompetitor?
-    ) -> Font.Weight {
+    private func totalWeight(_ team: GameCompetitor?, _ opponent: GameCompetitor?) -> Font.Weight {
+        let a = Int(team?.totalScore() ?? "") ?? 0
+        let b = Int(opponent?.totalScore() ?? "") ?? 0
+        return a > b ? .bold : .semibold
+    }
+}
 
-        let TotalTeamA = Int(TeamA?.totalScore() ?? "") ?? 0
-        let TotalTeamB = Int(TeamB?.totalScore() ?? "") ?? 0
 
-        return TotalTeamA > TotalTeamB ? .semibold : .regular
+extension Array {
+    func safe(_ index: Int) -> Element? {
+        guard indices.contains(index) else { return nil }
+        return self[index]
     }
 }

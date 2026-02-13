@@ -7,9 +7,8 @@
 
 import Foundation
 
-final class DefaultsStorage {
-
-    static let shared = DefaultsStorage()
+final class DefaultStorage {
+    static let shared = DefaultStorage()
     private init() {}
 
     private let defaults = UserDefaults.standard

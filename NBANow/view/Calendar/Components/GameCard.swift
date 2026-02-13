@@ -13,7 +13,6 @@ struct GameHomeCard: View {
         let statusText = competition?.status?.type?.description ?? game.status?.type?.description ?? ""
 
         VStack(spacing: 0) {
-
             HStack {
                 Text("Week \(weekNumber)")
                     .font(.subheadline)
@@ -22,14 +21,16 @@ struct GameHomeCard: View {
                 Spacer()
 
                 Text(statusText)
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundColor(.secondary)
             }
-            .padding()
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
 
             Divider()
 
-            HStack(spacing: 20) {
+            HStack {
+
                 TeamSide(
                     logo: away?.team?.logo,
                     abbr: away?.team?.abbreviation ?? "--",
@@ -37,7 +38,13 @@ struct GameHomeCard: View {
                     winner: away?.winner ?? false
                 )
 
-                Text("vs").foregroundColor(.gray)
+                Spacer()
+
+                Text("vs")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+
+                Spacer()
 
                 TeamSide(
                     logo: home?.team?.logo,
@@ -49,12 +56,14 @@ struct GameHomeCard: View {
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.secondary)
             }
-            .padding()
+            .padding(.horizontal, 16)
+            .padding(.vertical, 18)
         }
         .background(Color(.systemBackground))
-        .cornerRadius(14)
-        .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 3)
+        .cornerRadius(18)
+        .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 6)
     }
 }
