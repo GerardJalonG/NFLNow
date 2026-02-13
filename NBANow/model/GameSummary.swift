@@ -57,7 +57,16 @@ struct GameHeader: Codable {
 }
 
 struct GameCompetition: Codable {
+    let status: GameStatus
     let competitors: [GameCompetitor]
+}
+
+struct GameStatus: Codable {
+    let type: GameStatusType
+}
+
+struct GameStatusType: Codable {
+    let description: String
 }
 
 struct GameCompetitor: Codable {

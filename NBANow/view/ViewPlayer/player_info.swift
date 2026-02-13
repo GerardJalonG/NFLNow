@@ -54,10 +54,3 @@ extension Athlete {
     )
 }
 
-struct player_info_Previews: PreviewProvider {
-    static var previews: some View {
-        player_info(
-            player: .mock
-        )
-    }
-}
