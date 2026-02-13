@@ -53,7 +53,7 @@ struct home_view: View {
                                     .padding(.top, 10)
 
                                 Button(action: { showTeams = true }) {
-                                    Text("Añadir equipos favoritos")
+                                    Text("Add teams")
                                         .font(.body)
                                         .foregroundColor(Color(.systemBlue))
                                 }

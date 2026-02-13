@@ -34,7 +34,7 @@ struct calendar_view: View {
                         } else {
                             VStack(spacing: 10) {
                                 ProgressView()
-                                Text("Cargando partidos...")
+                                Text("Loading games...")
                                     .foregroundColor(Color(.secondaryLabel))
                             }
                             .padding(.top, 40)

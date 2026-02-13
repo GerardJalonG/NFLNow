@@ -21,7 +21,7 @@ struct stat: View {
 
 struct stat_Previews: PreviewProvider {
     static var previews: some View {
-        stat(key: "PUNTOS" , value: "89")
+        stat(key: "Points" , value: "89")
     }
 }
 

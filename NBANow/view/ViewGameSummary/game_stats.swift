@@ -74,7 +74,7 @@ struct GameStatsView: View {
                             } else {
                                 VStack(spacing: 10) {
                                     ProgressView()
-                                    Text("Cargando stats del partido…")
+                                    Text("Loading game stats...")
                                         .foregroundColor(.secondary)
                                 }
                                 .padding(.top, 30)
@@ -84,7 +84,7 @@ struct GameStatsView: View {
                         } else {
                             VStack(spacing: 10) {
                                 ProgressView()
-                                Text("Cargando resumen del partido…")
+                                Text("Loading game summary...")
                                     .foregroundColor(.secondary)
                             }
                             .padding(.top, 30)

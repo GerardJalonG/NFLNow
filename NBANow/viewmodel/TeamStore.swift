@@ -21,13 +21,13 @@ final class TeamStore: ObservableObject {
         teamIDs.contains(team.id)
     }
 
-    func add(_ team: Team) -> Bool {
-        guard !isFollowing(team) else { return true }
-        guard teamIDs.count < maxTeams else { return false }
+    func add(_ team: Team){
+        guard !isFollowing(team) else { return }
+        guard teamIDs.count < maxTeams else { return }
 
         teamIDs.append(team.id)
         storage.saveFollowingTeamIDs(teamIDs)
-        return true
+        return
     }
 
     func remove(_ team: Team) {

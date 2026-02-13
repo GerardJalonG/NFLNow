@@ -29,7 +29,6 @@ struct AddingTeamsView: View {
         
         NavigationView {
             List {
-
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
@@ -88,7 +87,7 @@ struct AddingTeamsView: View {
             Alert(
                 title: Text(error.title),
                 message: Text(error.message),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text("Ok"))
             )
         }
     }

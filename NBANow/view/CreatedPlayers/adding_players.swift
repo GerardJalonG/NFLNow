@@ -105,7 +105,7 @@ struct AddingPlayersView: View {
                 Alert(
                     title: Text(error.title),
                     message: Text(error.message),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("Ok"))
                 )
             }
         }

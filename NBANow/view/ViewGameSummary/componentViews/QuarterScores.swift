@@ -49,10 +49,10 @@ struct QuarterScoresView: View {
                 Spacer().frame(width: 34)
             }
 
-            cell(team, opponent, 0)
-            cell(team, opponent, 1)
-            cell(team, opponent, 2)
-            cell(team, opponent, 3)
+            quarterPoints(team, opponent, 0)
+            quarterPoints(team, opponent, 1)
+            quarterPoints(team, opponent, 2)
+            quarterPoints(team, opponent, 3)
 
             Text(team?.totalScore() ?? "-")
                 .font(.system(size: 18, weight: totalWeight(team, opponent)))
@@ -60,11 +60,11 @@ struct QuarterScoresView: View {
         }
     }
 
-    private func cell(_ team: GameCompetitor?, _ opponent: GameCompetitor?, _ index: Int) -> some View {
-        let a = Int(team?.linescores?.safe(index)?.displayValue ?? "") ?? 0
-        let b = Int(opponent?.linescores?.safe(index)?.displayValue ?? "") ?? 0
+    private func quarterPoints(_ team: GameCompetitor?, _ opponent: GameCompetitor?, _ index: Int) -> some View {
+        let a = Int(team?.linescores?[safe: index]?.displayValue ?? "") ?? 0
+        let b = Int(opponent?.linescores?[safe: index]?.displayValue ?? "") ?? 0
 
-        return Text(team?.linescores?.safe(index)?.displayValue ?? "-")
+        return Text(team?.linescores?[safe: index]?.displayValue ?? "-")
             .font(.system(size: 16, weight: a > b ? .semibold : .regular))
             .frame(width: 44)
     }
@@ -73,13 +73,5 @@ struct QuarterScoresView: View {
         let a = Int(team?.totalScore() ?? "") ?? 0
         let b = Int(opponent?.totalScore() ?? "") ?? 0
         return a > b ? .bold : .semibold
-    }
-}
-
-
-extension Array {
-    func safe(_ index: Int) -> Element? {
-        guard indices.contains(index) else { return nil }
-        return self[index]
     }
 }

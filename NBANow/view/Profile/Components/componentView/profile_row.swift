@@ -19,7 +19,7 @@ struct profile_row: View {
 
             Button(action: action) {
                 if showEdit {
-                    Text("Editar")
+                    Text("Edit")
                         .fontWeight(.semibold)
                 } else {
                     Image(systemName: "plus")

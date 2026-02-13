@@ -28,16 +28,16 @@ struct team_info: View {
                         VStack(alignment: .leading, spacing: 4) {
 
                             HStack(spacing: 6) {
-                                Text(t.standingSummary ?? "No hay posición definida.")
+                                Text(t.standingSummary ?? "There is no position registered.")
                                     .font(.body)
                                     .fontWeight(.medium)
 
-                                Text(t.record?.items?.first?.summary ?? "No hay record registrado.")
+                                Text(t.record?.items?.first?.summary ?? "There is no record.")
                                     .font(.headline)
                                     .fontWeight(.medium)
                             }
 
-                            Text(t.franchise?.venue.fullName ?? "No hay campo definido.")
+                            Text(t.franchise?.venue.fullName ?? "There is no venue.")
                                 .font(.title3)
                                 .fontWeight(.semibold)
                         }
@@ -59,7 +59,8 @@ struct team_info: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-                .padding(.top, 40)                 .foregroundColor(.white)
+                .padding(.top, 40)                 
+                .foregroundColor(.white)
             }
             .frame(minHeight: 220)
 
@@ -84,7 +85,7 @@ struct team_info: View {
                         }
                     }
                 } else {
-                    Text(vm.messageError ?? "Cargando estadísticas…")
+                    Text(vm.messageError ?? "Loading stats...")
                         .foregroundColor(.secondary)
                 }
                 
@@ -103,7 +104,7 @@ struct team_info: View {
                         }
                     }
                 } else {
-                    Text(rvm.messageError ?? "Cargando roster…")
+                    Text(rvm.messageError ?? "Loading roster...")
                         .foregroundColor(.secondary)
                 }
             }
@@ -112,12 +113,8 @@ struct team_info: View {
         }
         .edgesIgnoringSafeArea(.top)
         .onAppear {
-            print("TEAM FROM HOME:", team.id, team.displayName, team.record as Any, team.franchise as Any, team.standingSummary as Any)
             vm.fetchTeam(id: team.id)
             rvm.fetchRoster(teamId: team.id)
-        }
-        .onReceive(vm.$team) { newValue in
-            print("TEAM FROM DETAIL:", newValue as Any)
         }
     }
 }
