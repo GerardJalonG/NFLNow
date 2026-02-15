@@ -8,6 +8,7 @@ struct home_view: View {
     @EnvironmentObject var playerStore: PlayerStore
 
     @State private var showTeams = false
+    @State private var showPlayers = false
 
     private var teams: [Team] { teamsViewModel.teams }
 
@@ -31,8 +32,14 @@ struct home_view: View {
                             Text("No players created")
                                 .foregroundColor(Color(.secondaryLabel))
                                 .padding(.top, 6)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.horizontal, 20)
+                            
+                            Button(action: { showPlayers = true }) {
+                                Text("Create Player")
+                                    .font(.body)
+                                    .foregroundColor(Color(.systemBlue)
+                            )}
                         } else {
                             ForEach(playerStore.players, id: \.id) { player in
                                 PlayerHomeCard(player: player)
@@ -81,6 +88,9 @@ struct home_view: View {
             }
             .sheet(isPresented: $showTeams) {
                 AddingTeamsView()
+            }
+            .sheet(isPresented: $showPlayers) {
+                AddingPlayersView(isPresented: $showPlayers)
             }
         }
     }
