@@ -120,3 +120,15 @@ Esta implementación demuestra:
 - Correcta integración con arquitectura MVVM.
 - Aplicación de reglas de negocio en el ViewModel.
 - Organización modular y escalable del proyecto.
+
+---
+
+###Video Tour NFLNow
+https://youtu.be/WH_s2Ud3caM
+
+---
+
+###Documentación extra 
+##Recursos usados para la creación de la aplicación móvil.
+
+[Recursos Usados - NFLNow.pdf](https://github.com/user-attachments/files/25337196/Recursos.Usados.-.NFLNow.pdf)
