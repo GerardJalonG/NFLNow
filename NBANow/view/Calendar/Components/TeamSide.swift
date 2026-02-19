@@ -10,7 +10,7 @@ struct TeamSide: View {
     var body: some View {
         HStack(spacing: 14) {
 
-            if let logo, let url = URL(string: logo) {
+            if let logo = logo, let url = URL(string: logo) {
                 KFImage(url)
                     .resizable()
                     .scaledToFit()

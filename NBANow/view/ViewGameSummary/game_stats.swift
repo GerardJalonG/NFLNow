@@ -24,7 +24,7 @@ struct GameStatsView: View {
                                 .padding(.top, 40)
                                 .frame(maxWidth: .infinity)
 
-                        } else if let competition {
+                        } else if let competition = competition {
 
                             GameHeaderView(competition: competition)
                                 .padding(.top, 8)

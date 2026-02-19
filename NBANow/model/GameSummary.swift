@@ -83,7 +83,7 @@ struct GameLineScore: Codable {
 
 extension GameCompetitor {
     func totalScore() -> String {
-        guard let linescores else { return "-" }
+        guard let linescores  = linescores else { return "-" }
 
         var total = 0
         for line in linescores {

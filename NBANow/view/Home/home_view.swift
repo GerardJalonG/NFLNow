@@ -105,7 +105,3 @@ struct home_view: View {
     }
 }
 
-#Preview {
-    home_view()
-        .environmentObject(TeamStore())
-}

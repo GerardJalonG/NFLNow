@@ -11,9 +11,10 @@ struct progress_bar: View {
     let progress: Double
     let color: Color
 
-    private let maxWidth: Double = 350
+    private let maxWidth: CGFloat = 350
 
     var body: some View {
+        
         ZStack(alignment: .leading) {
 
             RoundedRectangle(cornerRadius: 4)
@@ -23,7 +24,7 @@ struct progress_bar: View {
             RoundedRectangle(cornerRadius: 4)
                 .fill(color)
                 .frame(
-                    width: maxWidth * min(progress, 1),
+                    width: maxWidth * CGFloat(min(progress, 1.0)),
                     height: 8
                 )
         }
