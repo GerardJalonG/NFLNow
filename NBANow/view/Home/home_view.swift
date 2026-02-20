@@ -7,8 +7,8 @@ struct home_view: View {
 
     @EnvironmentObject var playerStore: PlayerStore
 
-    @State private var showTeams = false
-    @State private var showPlayers = false
+    @State private var addTeams = false
+    @State private var addPlayers = false
 
     private var teams: [Team] { teamsViewModel.teams }
 
@@ -35,7 +35,7 @@ struct home_view: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.horizontal, 20)
                             
-                            Button(action: { showPlayers = true }) {
+                            Button(action: { addPlayers = true }) {
                                 Text("Create Player")
                                     .font(.body)
                                     .foregroundColor(Color(.systemBlue)
@@ -59,7 +59,7 @@ struct home_view: View {
                                     .foregroundColor(Color(.secondaryLabel))
                                     .padding(.top, 10)
 
-                                Button(action: { showTeams = true }) {
+                                Button(action: { addTeams = true }) {
                                     Text("Add teams")
                                         .font(.body)
                                         .foregroundColor(Color(.systemBlue))
@@ -86,11 +86,11 @@ struct home_view: View {
                     teamsViewModel.fetchAllTeams()
                 }
             }
-            .sheet(isPresented: $showTeams) {
+            .sheet(isPresented: $addTeams) {
                 AddingTeamsView()
             }
-            .sheet(isPresented: $showPlayers) {
-                AddingPlayersView(isPresented: $showPlayers)
+            .sheet(isPresented: $addPlayers) {
+                AddingPlayersView(isPresented: $addPlayers)
             }
         }
     }
