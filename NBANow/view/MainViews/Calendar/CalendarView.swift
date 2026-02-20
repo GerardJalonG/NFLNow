@@ -10,18 +10,18 @@ struct CalendarView: View {
                 Color(.systemBackground).ignoresSafeArea()
 
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack(spacing: UI.Sizes.extraLarge) {
 
                         Text("Calendar")
                             .font(.largeTitle).bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UI.Sizes.page)
                             .foregroundColor(Color(.label))
 
                         if let error = vm.messageError {
                             Text(error)
                                 .foregroundColor(Color(.systemRed))
-                                .padding(.top, 40)
+                                .padding(.top, UI.Sizes.screen)
                                 .frame(maxWidth: .infinity)
                         } else if let sb = vm.sb,
                                   let game = sb.events.first {
@@ -30,14 +30,14 @@ struct CalendarView: View {
                             ) {
                                 GlobalGameCard(game: game, weekNumber: sb.week?.number ?? 0)
                             }
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UI.Sizes.screen)
                         } else {
                             VStack(spacing: 10) {
                                 ProgressView()
                                 Text("Loading games...")
                                     .foregroundColor(Color(.secondaryLabel))
                             }
-                            .padding(.top, 40)
+                            .padding(.top, UI.Sizes.screen)
                             .frame(maxWidth: .infinity)
                         }
                     }

@@ -30,7 +30,7 @@ struct AddingTeamsView: View {
             List {
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: UI.Sizes.large) {
                             ForEach(teamStore.teamIDs, id: \.self) { id in
                                 if let team = teams.first(where: { $0.id == id }),
                                    let logoURL = team.logos.first?.href,
@@ -48,8 +48,8 @@ struct AddingTeamsView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
+                        .padding(.horizontal, UI.Sizes.extraLarge)
+                        .padding(.vertical, UI.Sizes.medium)
                     }
                 } header: {
                     Text("Following")

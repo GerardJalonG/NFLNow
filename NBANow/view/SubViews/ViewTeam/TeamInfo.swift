@@ -23,11 +23,11 @@ struct TeamInfo: View {
             ZStack(alignment: .bottomLeading) {
                 Color(hex: t.color)
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: UI.Sizes.medium) {
                     HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: UI.Sizes.small) {
 
-                            HStack(spacing: 6) {
+                            HStack(spacing: UI.Sizes.regular) {
                                 Text(t.standingSummary ?? "There is no position registered.")
                                     .font(.body)
                                     .fontWeight(.medium)
@@ -59,7 +59,7 @@ struct TeamInfo: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-                .padding(.top, 40)                 
+                .padding(.top, UI.Sizes.screen)
                 .foregroundColor(.white)
             }
             .frame(minHeight: 220)
@@ -70,7 +70,7 @@ struct TeamInfo: View {
                 Text("STATS").bold()
                 if t.record?.items?.first?.stats?.isEmpty == false {
                     HStack {
-                        VStack(spacing: 8) {
+                        VStack(spacing: UI.Sizes.medium) {
                             Stat(key: "APA", value: decimal_to_string(apa))
                             Stat(key: "APF", value: decimal_to_string(apf))
                             Stat(key: "WP%", value: decimal_to_string(wp))
@@ -78,7 +78,7 @@ struct TeamInfo: View {
 
                         Spacer()
 
-                        VStack(spacing: 8) {
+                        VStack(spacing: UI.Sizes.medium) {
                             Stat(key: "PAG", value: decimal_to_string(pag))
                             Stat(key: "PDF", value: decimal_to_string(pdf))
                             Stat(key: "PFO", value: decimal_to_string(pfo))
@@ -90,13 +90,13 @@ struct TeamInfo: View {
                 }
                 
                 if let roster = rvm.roster {
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: UI.Sizes.large) {
                         Text("ROSTER").bold()
 
                         ForEach(roster.athletes, id: \.position) { group in
                             Text(group.position.uppercased())
                                 .font(.headline)
-                                .padding(.top, 8)
+                                .padding(.top, UI.Sizes.medium)
 
                             ForEach(group.items) { player in
                                 TeamPlayerRow(player: player)
@@ -108,7 +108,7 @@ struct TeamInfo: View {
                         .foregroundColor(.secondary)
                 }
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, UI.Sizes.medium)
             .padding(.horizontal)
         }
         .edgesIgnoringSafeArea(.top)

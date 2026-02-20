@@ -12,15 +12,15 @@ struct PlayerTopPerformancesSection: View {
     let topPerformances: [TopPerformanceItem]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: UI.Sizes.large) {
 
             Text("TOP PERFORMANCES")
                 .font(.title3)
                 .fontWeight(.bold)
 
-            VStack(spacing: 12) {
+            VStack(spacing: UI.Sizes.large) {
                 ForEach(topPerformances) { item in
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: UI.Sizes.regular) {
 
                         HStack {
                             Text(item.metric)
@@ -65,12 +65,12 @@ struct PlayerTopPerformancesSection: View {
                             color: Color(hex: item.opponentColor)
                         )
                     }
-                    .padding(12)
+                    .padding(UI.Sizes.large)
                     .background(Color(.systemGray6))
-                    .cornerRadius(12)
+                    .cornerRadius(UI.Sizes.large)
                 }
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, UI.Sizes.extraLarge)
     }
 }

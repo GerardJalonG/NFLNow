@@ -17,7 +17,7 @@ struct ProgressBar: View {
         
         ZStack(alignment: .leading) {
 
-            RoundedRectangle(cornerRadius: 4)
+            RoundedRectangle(cornerRadius: UI.Sizes.small)
                 .fill(Color.gray.opacity(0.25))
                 .frame(width: maxWidth, height: 8)
             
@@ -25,7 +25,7 @@ struct ProgressBar: View {
                 .fill(color)
                 .frame(
                     width: maxWidth * CGFloat(min(progress, 1.0)),
-                    height: 8
+                    height: UI.Sizes.medium
                 )
         }
     }

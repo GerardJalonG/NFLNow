@@ -29,7 +29,7 @@ struct TemplateMyPlayersTitle: View {
                         .font(.headline)
                         .foregroundColor(.blue)
                 }
-                .padding(.trailing, 8)
+                .padding(.trailing, UI.Sizes.medium)
             }
 
             Button(action: {
@@ -39,7 +39,7 @@ struct TemplateMyPlayersTitle: View {
                     .font(.headline)
             }
         }
-        .padding(.horizontal, 30)
-        .padding(.vertical, 8)
+        .padding(.horizontal, UI.Sizes.block)
+        .padding(.vertical, UI.Sizes.medium)
     }
 }

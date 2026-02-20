@@ -24,8 +24,8 @@ struct GlobalGameCard: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, UI.Sizes.extraLarge)
+            .padding(.vertical, UI.Sizes.large)
 
             Divider()
 
@@ -59,11 +59,11 @@ struct GlobalGameCard: View {
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.secondary)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, UI.Sizes.extraLarge)
             .padding(.vertical, 18)
         }
         .background(Color(.systemBackground))
         .cornerRadius(18)
-        .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 6)
+        .shadow(color: Color.black.opacity(0.08), radius: UI.Sizes.large, x: 0, y: 6)
     }
 }

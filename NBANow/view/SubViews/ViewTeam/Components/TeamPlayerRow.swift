@@ -5,19 +5,19 @@ struct TeamPlayerRow: View {
     let player: Athlete
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: UI.Sizes.large) {
 
             if let imageURL = player.headshot?.href,
                let url = URL(string: imageURL) {
                 KFImage(url)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 40, height: 40)
+                    .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
                     .clipShape(Circle())
             } else {
                 Circle()
                     .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                    .frame(width: 40, height: 40)
+                    .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
             }
 
             VStack(alignment: .leading, spacing: 4) {
@@ -32,6 +32,6 @@ struct TeamPlayerRow: View {
             }
         }
         .padding(.vertical, 10)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, UI.Sizes.extraLarge)
     }
 }

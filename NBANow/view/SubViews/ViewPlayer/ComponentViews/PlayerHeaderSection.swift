@@ -11,7 +11,7 @@ struct PlayerHeaderSection: View {
     let player: CreatedPlayer
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: UI.Sizes.regular) {
 
             Text("Age: \(player.age)")
                 .foregroundColor(.gray)

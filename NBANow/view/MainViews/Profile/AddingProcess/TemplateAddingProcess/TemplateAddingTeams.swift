@@ -16,17 +16,17 @@ struct TemplateAddingTeams: View {
     let eliminar: () -> Void
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: UI.Sizes.large) {
             if let logoURL = team.logos.first?.href,
                let url = URL(string: logoURL) {
                 KFImage(url)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
             } else {
                 Rectangle()
                     .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                    .frame(width: 40, height: 40)
+                    .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
             }
 
             Text(team.displayName)
@@ -48,6 +48,6 @@ struct TemplateAddingTeams: View {
             }
         }
         .padding(.vertical, 10)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, UI.Sizes.extraLarge)
     }
 }

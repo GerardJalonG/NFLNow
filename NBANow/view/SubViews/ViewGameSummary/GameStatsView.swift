@@ -21,28 +21,28 @@ struct GameStatsView: View {
                         if let error = vm.summaryError {
                             Text(error)
                                 .foregroundColor(.red)
-                                .padding(.top, 40)
+                                .padding(.top, UI.Sizes.screen)
                                 .frame(maxWidth: .infinity)
 
                         } else if let competition = competition {
 
-                            GameHeader(competition: competition)
-                                .padding(.top, 8)
+                            GameHeaderSection(competition: competition)
+                                .padding(.top, UI.Sizes.medium)
 
                             Divider()
-                                .padding(.top, 4)
+                                .padding(.top, UI.Sizes.small)
 
                             Text("QUARTER SCORES")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 2)
+                                .padding(.top, UI.Sizes.tiny)
 
                             QuarterScores(competition: competition)
-                                .padding(16)
+                                .padding(UI.Sizes.extraLarge)
                                 .background(Color(.systemGray6))
-                                .cornerRadius(16)
+                                .cornerRadius(UI.Sizes.extraLarge)
 
                             if let teams = vm.summary?.boxscore?.teams {
 
@@ -51,7 +51,7 @@ struct GameStatsView: View {
                                     .fontWeight(.semibold)
                                     .foregroundColor(.secondary)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.top, 6)
+                                    .padding(.top, UI.Sizes.regular)
 
                                 VStack(spacing: 0) {
                                     ForEach(top5StatNames, id: \.self) { statName in
@@ -67,9 +67,9 @@ struct GameStatsView: View {
                                         }
                                     }
                                 }
-                                .padding(16)
+                                .padding(UI.Sizes.extraLarge)
                                 .background(Color(.systemGray6))
-                                .cornerRadius(16)
+                                .cornerRadius(UI.Sizes.extraLarge)
 
                             } else {
                                 VStack(spacing: 10) {
@@ -77,7 +77,7 @@ struct GameStatsView: View {
                                     Text("Loading game stats...")
                                         .foregroundColor(.secondary)
                                 }
-                                .padding(.top, 30)
+                                .padding(.top, UI.Sizes.block)
                                 .frame(maxWidth: .infinity)
                             }
 
@@ -91,8 +91,8 @@ struct GameStatsView: View {
                             .frame(maxWidth: .infinity)
                         }
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
+                    .padding(.horizontal, UI.Sizes.extraLarge)
+                    .padding(.vertical, UI.Sizes.large)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

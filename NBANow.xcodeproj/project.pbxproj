@@ -16,6 +16,7 @@
 		BF3D2C162F2EB2F500FE6063 /* PlayerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D2C152F2EB2F100FE6063 /* PlayerStore.swift */; };
 		BF75BA952F3A2AB900589217 /* RosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75BA942F3A2AB900589217 /* RosterViewModel.swift */; };
 		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
+		BFA4C34A2F49155B003E3249 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4C3492F491556003E3249 /* Constants.swift */; };
 		BFD1B6C92F2F9B3E00425B07 /* TeamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */; };
 		BFDA08952F30EE0D006BFAFD /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */; };
 		BFDA08972F30EE44006BFAFD /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */; };
@@ -51,6 +52,7 @@
 		BF3D2C152F2EB2F100FE6063 /* PlayerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStore.swift; sourceTree = "<group>"; };
 		BF75BA942F3A2AB900589217 /* RosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewModel.swift; sourceTree = "<group>"; };
 		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
+		BFA4C3492F491556003E3249 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStore.swift; sourceTree = "<group>"; };
 		BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
 		BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		697C16E82F3E530F000CF249 /* constants */ = {
 			isa = PBXGroup;
 			children = (
+				BFA4C3492F491556003E3249 /* Constants.swift */,
 				697C16E92F3E542F000CF249 /* APIConstants.swift */,
 			);
 			path = constants;
@@ -340,6 +343,7 @@
 				697C16EA2F3E542F000CF249 /* APIConstants.swift in Sources */,
 				EF9F4E132F1E7C6E00D1EC5A /* ViewModel.swift in Sources */,
 				692CCC5F2F16C95A0007A09B /* APIError.swift in Sources */,
+				BFA4C34A2F49155B003E3249 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

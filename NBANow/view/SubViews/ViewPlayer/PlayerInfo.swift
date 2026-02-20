@@ -22,21 +22,21 @@ struct PlayerInfo: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: UI.Sizes.extraLarge) {
 
-                    PlayerHeaderSection(player: player).padding(.horizontal, 16)
-
-                    Divider()
-
-                    PlayerStatsSection(playerStats: playerStats).padding(.horizontal, 16)
+                    PlayerHeaderSection(player: player).padding(.horizontal, UI.Sizes.extraLarge)
 
                     Divider()
-                        .padding(.vertical, 6)
+
+                    PlayerStatsSection(playerStats: playerStats).padding(.horizontal, UI.Sizes.extraLarge)
+
+                    Divider()
+                        .padding(.vertical, UI.Sizes.regular)
 
                     PlayerTopPerformancesSection(topPerformances: topPerformances)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
+                .padding(.horizontal, UI.Sizes.extraLarge)
+                .padding(.top, UI.Sizes.medium)
                 
             }
         }

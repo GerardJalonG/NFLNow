@@ -65,7 +65,7 @@ struct QuarterScores: View {
         let b = Int(opponent?.linescores?[safe: index]?.displayValue ?? "") ?? 0
 
         return Text(team?.linescores?[safe: index]?.displayValue ?? "-")
-            .font(.system(size: 16, weight: a > b ? .semibold : .regular))
+            .font(.system(size: UI.Sizes.extraLarge, weight: a > b ? .semibold : .regular))
             .frame(width: 44)
     }
 
@@ -75,3 +75,4 @@ struct QuarterScores: View {
         return a > b ? .bold : .semibold
     }
 }
+

@@ -20,12 +20,12 @@ struct PersonalProfile: View {
                 Color(.systemBackground).ignoresSafeArea()
 
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
+                    VStack(alignment: .leading, spacing: UI.Sizes.extraLarge) {
                         
                         Text("Profile")
                             .font(.largeTitle).bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UI.Sizes.section)
                             .foregroundColor(Color(.label))
 
                         TemplateMyTeamsTitle(
@@ -48,7 +48,7 @@ struct PersonalProfile: View {
                                     }
                                 }
                             }
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, UI.Sizes.extraLarge)
                         }
 
                         TemplateMyPlayersTitle(
@@ -65,7 +65,7 @@ struct PersonalProfile: View {
                         )
 
                         ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 12) {
+                            HStack(spacing: UI.Sizes.large) {
                                 ForEach(createdPlayersStore.players) { player in
                                     ZStack {
                                         Circle().fill(Color.gray.opacity(0.2))
@@ -75,12 +75,12 @@ struct PersonalProfile: View {
                                     .frame(width: 52, height: 52)
                                 }
                             }
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, UI.Sizes.extraLarge)
                         }
 
                         Spacer()
                     }
-                    .padding(.vertical, 24)
+                    .padding(.vertical, UI.Sizes.section)
                 }
             }
             .navigationBarTitle("", displayMode: .inline)

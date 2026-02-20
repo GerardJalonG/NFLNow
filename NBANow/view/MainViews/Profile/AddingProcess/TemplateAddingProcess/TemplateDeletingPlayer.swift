@@ -13,7 +13,7 @@ struct TemplateDeletingPlayers: View {
     let eliminar: () -> Void
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: UI.Sizes.large) {
 
             ZStack {
                 Circle()
@@ -22,9 +22,9 @@ struct TemplateDeletingPlayers: View {
                 Text(player.avatar.rawValue)
                     .font(.title2)
             }
-            .frame(width: 40, height: 40)
+            .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: UI.Sizes.tiny) {
                 Text(player.name)
                     .font(.body)
                     .fontWeight(.semibold)
@@ -45,6 +45,6 @@ struct TemplateDeletingPlayers: View {
             }
         }
         .padding(.vertical, 10)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, UI.Sizes.extraLarge)
     }
 }

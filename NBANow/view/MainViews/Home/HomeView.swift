@@ -18,12 +18,12 @@ struct HomeView: View {
                 Color(.systemBackground).ignoresSafeArea()
 
                 ScrollView {
-                    VStack(spacing: 16) {
+                    VStack(spacing: UI.Sizes.extraLarge) {
 
                         Text("Home")
                             .font(.largeTitle).bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UI.Sizes.page)
                             .foregroundColor(Color(.label))
 
                         sectionTitle("Players")
@@ -31,9 +31,9 @@ struct HomeView: View {
                         if playerStore.players.isEmpty {
                             Text("No players created")
                                 .foregroundColor(Color(.secondaryLabel))
-                                .padding(.top, 6)
+                                .padding(.top, UI.Sizes.regular)
                                 .frame(maxWidth: .infinity, alignment: .center)
-                                .padding(.horizontal, 20)
+                                .padding(.horizontal, UI.Sizes.page)
                             
                             Button(action: { addPlayers = true }) {
                                 Text("Create Player")
@@ -43,13 +43,13 @@ struct HomeView: View {
                         } else {
                             ForEach(playerStore.players, id: \.id) { player in
                                 PlayerHomeCard(player: player)
-                                    .padding(.horizontal, 20)
+                                    .padding(.horizontal, UI.Sizes.page)
                             }
                         }
 
                         Divider()
-                            .padding(.horizontal, 20)
-                            .padding(.top, 8)
+                            .padding(.horizontal, UI.Sizes.page)
+                            .padding(.top, UI.Sizes.medium)
 
                         sectionTitle("Teams")
 
@@ -64,20 +64,20 @@ struct HomeView: View {
                                         .font(.body)
                                         .foregroundColor(Color(.systemBlue))
                                 }
-                                .padding(.top, 6)
+                                .padding(.top, UI.Sizes.regular)
                             }
                             .frame(maxWidth: .infinity)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UI.Sizes.page)
                         } else {
                             ForEach(teamStore.teamIDs, id: \.self) { id in
                                 if let team = teams.first(where: { $0.id == id }) {
                                     TeamHomeCard(team: team)
-                                        .padding(.horizontal, 20)
+                                        .padding(.horizontal, UI.Sizes.page)
                                 }
                             }
                         }
                     }
-                    .padding(.vertical, 24)
+                    .padding(.vertical, UI.Sizes.section)
                 }
             }
             .navigationBarTitle("", displayMode: .inline)

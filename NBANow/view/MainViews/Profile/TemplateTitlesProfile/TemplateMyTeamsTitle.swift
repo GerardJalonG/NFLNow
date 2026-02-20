@@ -26,7 +26,7 @@ struct TemplateMyTeamsTitle: View {
                 }
             }
         }
-        .padding(.horizontal, 30)
-        .padding(.vertical, 8)
+        .padding(.horizontal, UI.Sizes.block)
+        .padding(.vertical, UI.Sizes.medium)
     }
 }

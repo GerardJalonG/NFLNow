@@ -2,7 +2,7 @@ import SwiftUI
 import Foundation
 import KingfisherSwiftUI
 
-struct GameHeader: View {
+struct GameHeaderSection: View {
 
     let competition: GameCompetition
 
@@ -17,7 +17,7 @@ struct GameHeader: View {
     var body: some View {
         HStack(alignment: .center, spacing: 18) {
 
-            VStack(spacing: 8) {
+            VStack(spacing: UI.Sizes.medium) {
                 if let logoURL = away?.team.logos.first?.href,
                    let url = URL(string: logoURL) {
                     KFImage(url)
@@ -34,7 +34,7 @@ struct GameHeader: View {
                     .minimumScaleFactor(0.85)
 
                 Text(away?.score ?? "-")
-                    .font(.system(size: 30, weight: (away?.winner ?? false) ? .bold : .semibold))
+                    .font(.system(size: UI.Sizes.block, weight: (away?.winner ?? false) ? .bold : .semibold))
                     .foregroundColor((away?.winner ?? false) ? .primary : .secondary)
             }
             .frame(maxWidth: .infinity)
@@ -45,7 +45,7 @@ struct GameHeader: View {
                 .foregroundColor(.secondary)
                 .frame(minWidth: 80)
 
-            VStack(spacing: 8) {
+            VStack(spacing: UI.Sizes.medium) {
                 if let logoURL = home?.team.logos.first?.href,
                    let url = URL(string: logoURL) {
                     KFImage(url)
@@ -62,12 +62,12 @@ struct GameHeader: View {
                     .minimumScaleFactor(0.85)
 
                 Text(home?.score ?? "-")
-                    .font(.system(size: 30, weight: (home?.winner ?? false) ? .bold : .semibold))
+                    .font(.system(size: UI.Sizes.block, weight: (home?.winner ?? false) ? .bold : .semibold))
                     .foregroundColor((home?.winner ?? false) ? .primary : .secondary)
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.vertical, 10)
-        .padding(.horizontal, 6)
+        .padding(.vertical, UI.Sizes.large)
+        .padding(.horizontal, UI.Sizes.regular)
     }
 }

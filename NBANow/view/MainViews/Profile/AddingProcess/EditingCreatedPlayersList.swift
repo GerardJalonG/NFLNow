@@ -21,11 +21,11 @@ struct EditingCreatedPlayersView: View {
                     Text("Following")
                         .foregroundColor(.gray)
                         .font(.title3)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
+                        .padding(.horizontal, UI.Sizes.extraLarge)
+                        .padding(.vertical, UI.Sizes.large)
 
                     ScrollView(.horizontal) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: UI.Sizes.large) {
                             ForEach(playerStore.players) { player in
                                 ZStack {
                                     Circle()
@@ -37,8 +37,8 @@ struct EditingCreatedPlayersView: View {
                                 .frame(width: 52, height: 52)
                             }
                         }
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 12)
+                        .padding(.horizontal, UI.Sizes.extraLarge)
+                        .padding(.bottom, UI.Sizes.large)
                     }
 
                     Divider()
@@ -52,7 +52,7 @@ struct EditingCreatedPlayersView: View {
                         )
 
                         Divider()
-                            .padding(.leading, 16)
+                            .padding(.leading, UI.Sizes.extraLarge)
                     }
                 }
             }

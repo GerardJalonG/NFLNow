@@ -18,10 +18,10 @@ struct GameCardInfo: View {
             } else {
                 Circle()
                     .fill(Color.gray.opacity(0.15))
-                    .frame(width: 40, height: 40)
+                    .frame(width: UI.Sizes.screen, height: UI.Sizes.screen)
             }
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: UI.Sizes.small) {
                 Text(abbr)
                     .font(.system(size: 18, weight: winner ? .bold : .semibold))
                     .foregroundColor(winner ? .primary : .secondary)

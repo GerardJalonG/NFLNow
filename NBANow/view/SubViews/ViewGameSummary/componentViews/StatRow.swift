@@ -7,7 +7,7 @@ struct StatRow: View {
     let teamBValue: String?
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: UI.Sizes.large) {
 
             Text(teamAValue ?? "-")
                 .font(.body)
