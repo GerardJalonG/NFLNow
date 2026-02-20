@@ -203,18 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				BFDA08A72F315ECB006BFAFD /* PlayerTopPerformancesView.swift */,
-				BFDA08A92F315ED9006BFAFD /* componentView */,
 				BFDA08A42F315E6D006BFAFD /* PlayerStatsView.swift */,
 				BFDA08A22F315D8D006BFAFD /* PlayerHeaderView.swift */,
 			);
 			path = ComponentViews;
-			sourceTree = "<group>";
-		};
-		BFDA08A92F315ED9006BFAFD /* componentView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = componentView;
 			sourceTree = "<group>";
 		};
 		BFE279322F31620D00BBF95E /* ViewPlayer */ = {
@@ -668,7 +660,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"NBANow/Preview Content\"";
-				DEVELOPMENT_TEAM = 35PKLDU248;
+				DEVELOPMENT_TEAM = C9U2X3734F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NBANow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NFL Now";
@@ -692,7 +684,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"NBANow/Preview Content\"";
-				DEVELOPMENT_TEAM = 35PKLDU248;
+				DEVELOPMENT_TEAM = C9U2X3734F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NBANow/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NFL Now";

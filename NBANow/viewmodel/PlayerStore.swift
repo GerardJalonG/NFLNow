@@ -31,8 +31,6 @@ final class PlayerStore: ObservableObject {
         if players.count >= maxPlayers { return .maxPlayersReached }
         if trimmed.isEmpty { return .emptyName }
         if trimmed.count > 30 { return .nameTooLong }
-        if !(18...40).contains(age) { return .invalidAge }
-        if !(0...99).contains(jerseyNumber) { return .invalidJersey }
 
         let newPlayer = CreatedPlayer(
             id: UUID().uuidString,
