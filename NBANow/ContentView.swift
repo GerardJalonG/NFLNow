@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct HomeView: View {
+struct homeView: View {
     var body: some View {
         Text("Home")
             .font(.largeTitle)
     }
 }
 
-struct CalendarView: View {
+struct calendarView: View {
     var body: some View {
         Text("Calendar")
             .font(.largeTitle)
@@ -17,20 +17,20 @@ struct CalendarView: View {
 struct ContentView: View {
     var body: some View {
         TabView {
-            home_view()
+            HomeView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
             
 
-            calendar_view()
+            CalendarView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
 
-            default_profile()
+            PersonalProfile()
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
