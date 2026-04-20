@@ -34,7 +34,7 @@ enum ScreenshotDemoData {
                 name: "Philadelphia Eagles",
                 venue: Venue(fullName: "Lincoln Financial Field")
             ),
-            record: demoRecord(wins: "7", losses: "3", ties: "0", against: "6.2", for: "24.8", average: "358.1", pointsFor: "248", pointsAgainst: "176", winPct: "0.700"),
+            record: demoRecord(wins: "7", losses: "3", ties: "0", against: "6.2", pointsForRate: "24.8", average: "358.1", pointsFor: "248", pointsAgainst: "176", winPct: "0.700"),
             standingSummary: "2nd in NFC East"
         )
     ]
@@ -167,7 +167,7 @@ enum ScreenshotDemoData {
             name: "Dallas Cowboys",
             venue: Venue(fullName: "AT&T Stadium")
         ),
-        record: demoRecord(wins: "8", losses: "3", ties: "0", against: "4.5", for: "28.4", average: "369.2", pointsFor: "313", pointsAgainst: "210", winPct: "0.727"),
+        record: demoRecord(wins: "8", losses: "3", ties: "0", against: "4.5", pointsForRate: "28.4", average: "369.2", pointsFor: "313", pointsAgainst: "210", winPct: "0.727"),
         standingSummary: "1st in NFC East"
     )
 
@@ -176,7 +176,7 @@ enum ScreenshotDemoData {
         losses: String,
         ties: String,
         against: String,
-        for: String,
+        pointsForRate: String,
         average: String,
         pointsFor: String,
         pointsAgainst: String,
@@ -188,7 +188,7 @@ enum ScreenshotDemoData {
                     RecordStat(name: "gamesBehind", value: 0),
                     RecordStat(name: "division", value: 1),
                     RecordStat(name: "against", value: Double(against) ?? 0),
-                    RecordStat(name: "for", value: Double(for) ?? 0),
+                    RecordStat(name: "for", value: Double(pointsForRate) ?? 0),
                     RecordStat(name: "average", value: Double(average) ?? 0),
                     RecordStat(name: "pointsFor", value: Double(pointsFor) ?? 0),
                     RecordStat(name: "pointsAgainst", value: Double(pointsAgainst) ?? 0),

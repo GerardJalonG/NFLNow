@@ -18,6 +18,9 @@
 		BF97661A2F16AE1C00E97321 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9766192F16AE1600E97321 /* ScoreBoard.swift */; };
 		BFA4C34A2F49155B003E3249 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA4C3492F491556003E3249 /* Constants.swift */; };
 		BFD1B6C92F2F9B3E00425B07 /* TeamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */; };
+		BFD1B6CA2F9B3E00425B07 /* ScreenshotConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6CB2F9B3E00425B07 /* ScreenshotConfiguration.swift */; };
+		BFD1B6CC2F9B3E00425B07 /* ScreenshotDemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6CD2F9B3E00425B07 /* ScreenshotDemoData.swift */; };
+		BFD1B6CE2F9B3E00425B07 /* ScreenshotRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD1B6CF2F9B3E00425B07 /* ScreenshotRootView.swift */; };
 		BFDA08952F30EE0D006BFAFD /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */; };
 		BFDA08972F30EE44006BFAFD /* DefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */; };
 		BFDA08A12F3159E4006BFAFD /* PlayerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA08A02F3159DF006BFAFD /* PlayerListItem.swift */; };
@@ -54,6 +57,9 @@
 		BF9766192F16AE1600E97321 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		BFA4C3492F491556003E3249 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BFD1B6C82F2F9B3800425B07 /* TeamStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStore.swift; sourceTree = "<group>"; };
+		BFD1B6CB2F9B3E00425B07 /* ScreenshotConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = screenshot/ScreenshotConfiguration.swift; sourceTree = "<group>"; };
+		BFD1B6CD2F9B3E00425B07 /* ScreenshotDemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = screenshot/ScreenshotDemoData.swift; sourceTree = "<group>"; };
+		BFD1B6CF2F9B3E00425B07 /* ScreenshotRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotRootView.swift; sourceTree = "<group>"; };
 		BFDA08942F30EE01006BFAFD /* DefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
 		BFDA08962F30EE3C006BFAFD /* DefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorage.swift; sourceTree = "<group>"; };
 		BFDA08A02F3159DF006BFAFD /* PlayerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListItem.swift; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 				BFDA08932F30EDE8006BFAFD /* storage */,
 				BFE279412F31CC7F00BBF95E /* errors */,
 				697C16E82F3E530F000CF249 /* constants */,
+				BFD1B6CB2F9B3E00425B07 /* ScreenshotConfiguration.swift */,
+				BFD1B6CD2F9B3E00425B07 /* ScreenshotDemoData.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 				BFA4C32E2F490D64003E3249 /* SubViews */,
 				BFA4C30A2F490D40003E3249 /* MainViews */,
 				BFE2793E2F31687900BBF95E /* GlobalSharedComponents */,
+				BFD1B6CF2F9B3E00425B07 /* ScreenshotRootView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -337,6 +346,9 @@
 				EFF90EC22F153F7100E1F807 /* NBANowApp.swift in Sources */,
 				BFE279432F31CC8D00BBF95E /* PlayerCreationErrors.swift in Sources */,
 				BFDA08972F30EE44006BFAFD /* DefaultStorage.swift in Sources */,
+				BFD1B6CA2F9B3E00425B07 /* ScreenshotConfiguration.swift in Sources */,
+				BFD1B6CC2F9B3E00425B07 /* ScreenshotDemoData.swift in Sources */,
+				BFD1B6CE2F9B3E00425B07 /* ScreenshotRootView.swift in Sources */,
 				BF3D2C022F2BB20F00FE6063 /* ProgressBar.swift in Sources */,
 				BFDA08952F30EE0D006BFAFD /* DefaultKeys.swift in Sources */,
 				BFE279402F31715500BBF95E /* CreatedPlayer.swift in Sources */,
