@@ -51,6 +51,10 @@ scripts/ci/capture_ios_screenshot.sh
 docs/screenshots/home.png
 ```
 
+Este workflow no se ejecuta cada vez que alguien abre el repositorio. Solo corre cuando lo lanzas manualmente desde `Actions` y, al terminar, la imagen queda guardada en el repo como un archivo estatico.
+
+El script intenta usar el simulador indicado en `DEVICE_NAME` y, si ese modelo no existe en el runner de GitHub, hace fallback automaticamente al primer `iPhone` disponible.
+
 Despues de ejecutar manualmente el workflow `iOS Simulator Screenshot` desde la pestaña `Actions`, la imagen quedara guardada en el repositorio y podra mostrarse aqui:
 
 ![Home](docs/screenshots/home.png)

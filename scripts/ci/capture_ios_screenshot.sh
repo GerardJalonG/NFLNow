@@ -20,18 +20,26 @@ shutdown_simulators() {
 
 trap shutdown_simulators EXIT
 
-DEVICE_ID="$(xcrun simctl list devices available | grep "${DEVICE_NAME} (" | head -n 1 | sed -E 's/.*\(([A-F0-9-]+)\) \(Shutdown\).*/\1/' || true)"
+find_device_id() {
+  local requested_name="$1"
+  xcrun simctl list devices available | grep "${requested_name} (" | head -n 1 | sed -E 's/.*\(([A-F0-9-]+)\).*/\1/' || true
+}
+
+DEVICE_ID="$(find_device_id "${DEVICE_NAME}")"
 
 if [[ -z "${DEVICE_ID}" ]]; then
-  DEVICE_ID="$(xcrun simctl list devices available | grep "${DEVICE_NAME} (" | head -n 1 | sed -E 's/.*\(([A-F0-9-]+)\).*/\1/' || true)"
+  echo "Requested simulator '${DEVICE_NAME}' is not available. Falling back to a detected iPhone simulator."
+  DEVICE_NAME="$(xcrun simctl list devices available | grep "iPhone" | head -n 1 | sed -E 's/^[[:space:]]*([^()]*) \([A-F0-9-]+\).*/\1/' || true)"
+  DEVICE_ID="$(find_device_id "${DEVICE_NAME}")"
 fi
 
 if [[ -z "${DEVICE_ID}" ]]; then
-  echo "Could not find an available simulator named ${DEVICE_NAME}."
+  echo "Could not find any available iPhone simulator."
   xcrun simctl list devices available
   exit 1
 fi
 
+echo "Resolved simulator: ${DEVICE_NAME} (${DEVICE_ID})"
 echo "Booting simulator ${DEVICE_ID}"
 xcrun simctl boot "${DEVICE_ID}" >/dev/null 2>&1 || true
 xcrun simctl bootstatus "${DEVICE_ID}" -b
