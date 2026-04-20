@@ -1,135 +1,69 @@
 # NFL Now
 
-Aplicación iOS desarrollada en SwiftUI que permite gestionar equipos, jugadores y estadísticas de partidos de forma estructurada y visual.  
-La aplicación sigue el patrón de arquitectura MVVM (Model–View–ViewModel), garantizando una organización clara del código, separación de responsabilidades y escalabilidad.
+Aplicacion iOS desarrollada con SwiftUI para consultar informacion de equipos, jugadores y estadisticas de la NFL desde una interfaz clara y modular.
 
----
-
-## Descripción
+## Descripcion
 
 NFL Now permite:
 
-- Crear y editar equipos
-- Añadir jugadores personalizados
-- Ver estadísticas de partidos
-- Visualizar rendimiento individual y colectivo
-- Consultar estadísticas detalladas por jugador
-- Mostrar resúmenes de partido y puntuaciones por cuarto
-- Persistencia de datos con UserDefaults
+- Crear y editar equipos seguidos
+- Anadir jugadores personalizados
+- Consultar estadisticas detalladas por jugador
+- Visualizar rendimientos individuales y colectivos
+- Revisar resúmenes de partido y puntuaciones por cuarto
+- Mantener datos guardados en local con `UserDefaults`
 
-La interfaz está desarrollada completamente en SwiftUI, con componentes reutilizables y diseño modular.
+La app esta construida completamente en SwiftUI y sigue una organizacion modular para facilitar mantenimiento y crecimiento.
 
 ## Arquitectura
 
-El proyecto está estructurado siguiendo el patrón MVVM (Model–View–ViewModel), con una separación clara entre la capa de presentación, la lógica de negocio y los modelos de datos.  
-La arquitectura está organizada de forma modular por dominios funcionales, lo que facilita la escalabilidad y el mantenimiento del código.
+El proyecto sigue el patron MVVM (`Model-View-ViewModel`) con una separacion clara entre presentacion, logica de negocio y modelos de datos.
 
----
-## Arquitectura General (MVVM)
-
-```
-core/       | storage/ | errors/ | constants/
-view/       | Calendar/ | Home/ | CreatedPlayers/ | SharedComponents/ | ViewTeam/ | Profile/ | ViewGameSummary/ | ViewPlayer/
-viewmodel/  | TeamStore | PlayerStore | GameSummaryViewModel | TeamViewModel | RosterViewModel | ScoreBoardViewModel
-services/   | NFLService | APIError
-model/      | CreatedPlayer | PlayerListItem | TopPerformances | PlayerStats | ScoreBoard | GameSummary | Team | Roster
+```text
+core/       storage/ | errors/ | constants/
+view/       Calendar/ | Home/ | Profile/ | ViewTeam/ | ViewGameSummary/ | ViewPlayer/ | SharedComponents/
+viewmodel/  TeamStore | PlayerStore | GameSummaryViewModel | TeamViewModel | RosterViewModel | ScoreBoardViewModel
+services/   NFLService | APIError
+model/      CreatedPlayer | PlayerListItem | TopPerformances | PlayerStats | ScoreBoard | GameSummary | Team | Roster
 ```
 
-## Funcionalidad Extra: Persistencia Local y Límite de Equipos Seguidos
+## Persistencia local
 
-Como funcionalidad adicional, se implementó un sistema de persistencia local utilizando `UserDefaults`, encapsulado en una capa de almacenamiento personalizada para mantener la arquitectura limpia y desacoplada.
+La persistencia se implementa con `UserDefaults` a traves de `DefaultStorage`, una capa dedicada que evita acoplar vistas y view models al almacenamiento.
 
----
+Incluye:
 
-### Persistencia Local con DefaultStorage
+- Guardado de equipos seguidos
+- Guardado de jugadores creados por el usuario
+- Serializacion segura con `Codable`, `JSONEncoder` y `JSONDecoder`
 
-Se creó la clase `DefaultStorage`, que actúa como capa intermedia entre la aplicación y `UserDefaults`.  
-Esta clase centraliza el acceso a la persistencia local y evita que las vistas o los ViewModels dependan directamente de `UserDefaults`.
+## Regla de negocio destacada
 
-#### Características principales:
+`TeamStore` gestiona el estado de los equipos seguidos y aplica un limite maximo de 5 equipos simultaneos. Esta restriccion demuestra la separacion entre logica de negocio, persistencia y capa visual.
 
-- Implementada como Singleton (`static let shared`)
-- Encapsula claves mediante `DefaultsKeys`
-- Soporta almacenamiento de:
-  - Equipos seguidos (array de IDs)
-  - Jugadores creados por el usuario (codificados en JSON)
+## Capturas del simulador
 
-#### Métodos implementados:
+Este repositorio incluye un workflow de GitHub Actions que puede compilar la app en un runner macOS y generar automaticamente una captura del simulador para la pantalla inicial:
 
-- `loadFollowingTeamIDs()`
-- `saveFollowingTeamIDs(_:)`
-- `loadCreatedPlayers()`
-- `saveCreatedPlayers(_:)`
-
-Para almacenar objetos personalizados (`CreatedPlayer`), se utiliza `Codable` junto con `JSONEncoder` y `JSONDecoder`, permitiendo guardar estructuras complejas en `UserDefaults` de forma segura.
-
-Esto mantiene la capa de persistencia aislada y facilita futuras migraciones a sistemas más avanzados como CoreData o SwiftData.
-
----
-
-### Gestión de Equipos Seguidos (TeamStore)
-
-Se implementó `TeamStore` como `ObservableObject`, responsable de:
-
-- Gestionar el estado de los equipos seguidos
-- Aplicar reglas de negocio
-- Sincronizar los datos con la persistencia local
-
-#### Responsabilidades:
-
-- Cargar los equipos guardados al iniciar la aplicación
-- Añadir equipos a la lista de seguimiento
-- Eliminar equipos
-- Verificar si un equipo ya está siendo seguido
-- Limitar el número máximo de equipos seguidos
-
----
-
-### Límite de Equipos Seguidos
-
-Como regla de negocio adicional, se estableció un límite máximo de 5 equipos seguidos simultáneamente:
-
-```swift
-private let maxTeams = 5
+```text
+.github/workflows/ios-simulator-screenshot.yml
+scripts/ci/capture_ios_screenshot.sh
+docs/screenshots/home.png
 ```
 
-Antes de añadir un equipo, se valida:
+Despues de ejecutar manualmente el workflow `iOS Simulator Screenshot` desde la pestaña `Actions`, la imagen quedara guardada en el repositorio y podra mostrarse aqui:
 
-1. Que no esté ya en la lista.
-2. Que no se haya alcanzado el límite máximo.
+![Home](docs/screenshots/home.png)
 
-Esto introduce una restricción funcional que mejora la experiencia de usuario y demuestra la correcta separación entre lógica de negocio y vista.
+Si mas adelante quieres ampliar la galeria, la estructura recomendada es:
 
----
+```text
+docs/screenshots/home.png
+docs/screenshots/calendar.png
+docs/screenshots/profile.png
+docs/screenshots/player-detail.png
+```
 
-### Beneficios Técnicos
-
-- Separación clara entre almacenamiento y lógica de negocio.
-- Encapsulación de `UserDefaults`.
-- Uso correcto de `ObservableObject` y `@Published`.
-- Persistencia automática del estado al modificar los datos.
-- Arquitectura preparada para escalar hacia soluciones más robustas.
-
----
-
-### Valor Añadido del Extra
-
-Esta implementación demuestra:
-
-- Conocimiento de persistencia local en iOS.
-- Correcta integración con arquitectura MVVM.
-- Aplicación de reglas de negocio en el ViewModel.
-- Organización modular y escalable del proyecto.
-
----
-
-### Video Tour NFLNow
-
-https://youtu.be/WH_s2Ud3caM
-
----
-
-### Documentación extra 
-## Recursos usados para la creación de la aplicación móvil.
+## Recursos adicionales
 
 [Recursos Usados - NFLNow.pdf](https://github.com/user-attachments/files/25337196/Recursos.Usados.-.NFLNow.pdf)
