@@ -15,26 +15,39 @@ struct calendarView: View {
 }
 
 struct ContentView: View {
+    private let initialTab: Int
+    @State private var selectedTab: Int
+
+    init(initialTab: Int = 0) {
+        self.initialTab = initialTab
+        _selectedTab = State(initialValue: initialTab)
+    }
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HomeView()
+                .tag(0)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            
 
             CalendarView()
+                .tag(1)
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Calendar")
                 }
 
             PersonalProfile()
+                .tag(2)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
                 }
+        }
+        .onAppear {
+            selectedTab = initialTab
         }
     }
 }

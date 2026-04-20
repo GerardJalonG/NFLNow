@@ -5,6 +5,12 @@ final class RosterViewModel: ObservableObject {
     @Published private(set) var roster: Roster?
 
     func fetchRoster(teamId: String) {
+        if ScreenshotConfiguration.isEnabled {
+            roster = ScreenshotDemoData.roster
+            messageError = nil
+            return
+        }
+
         NFLService.fetchTeamRosterGroups(teamId: teamId) { result in
             switch result {
             case .failure(let error):

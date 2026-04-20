@@ -5,6 +5,11 @@ final class TeamDetailViewModel: ObservableObject {
     @Published private(set) var team: Team?
 
     func fetchTeam(id: String) {
+        if ScreenshotConfiguration.isEnabled {
+            team = ScreenshotDemoData.teamDetail
+            messageError = nil
+            return
+        }
         
         NFLService.fetchTeamDetails(teamId: id) { result in
             switch result {

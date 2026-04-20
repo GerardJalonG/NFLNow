@@ -12,9 +12,15 @@ final class TeamStore: ObservableObject {
 
     private let storage = DefaultStorage.shared
     private let maxTeams = 5
+    private let usesPersistentStorage: Bool
 
-    init() {
-        teamIDs = storage.loadFollowingTeamIDs()
+    init(seededTeamIDs: [String] = [], usesPersistentStorage: Bool = true) {
+        self.usesPersistentStorage = usesPersistentStorage
+        if seededTeamIDs.isEmpty && usesPersistentStorage {
+            teamIDs = storage.loadFollowingTeamIDs()
+        } else {
+            teamIDs = seededTeamIDs
+        }
     }
 
     func isFollowing(_ team: Team) -> Bool {
@@ -26,12 +32,16 @@ final class TeamStore: ObservableObject {
         guard teamIDs.count < maxTeams else { return }
 
         teamIDs.append(team.id)
-        storage.saveFollowingTeamIDs(teamIDs)
+        if usesPersistentStorage {
+            storage.saveFollowingTeamIDs(teamIDs)
+        }
         return
     }
 
     func remove(_ team: Team) {
         teamIDs.removeAll { $0 == team.id }
-        storage.saveFollowingTeamIDs(teamIDs)
+        if usesPersistentStorage {
+            storage.saveFollowingTeamIDs(teamIDs)
+        }
     }
 }

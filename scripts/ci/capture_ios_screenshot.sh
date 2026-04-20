@@ -5,7 +5,7 @@ set -euo pipefail
 PROJECT_PATH="NBANow.xcodeproj"
 SCHEME="NBANow"
 CONFIGURATION="Debug"
-DEVICE_NAME="${DEVICE_NAME:-iPhone 15}"
+DEVICE_NAME="${DEVICE_NAME:-iPhone 16}"
 SCREENSHOT_PATH="${SCREENSHOT_PATH:-docs/screenshots/home.png}"
 DERIVED_DATA_PATH="${DERIVED_DATA_PATH:-build/DerivedData}"
 BUNDLE_ID="${BUNDLE_ID:-com.gerardjalon.nbanow}"
@@ -81,12 +81,24 @@ echo "Installing app from ${APP_PATH}"
 xcrun simctl uninstall "${DEVICE_ID}" "${BUNDLE_ID}" >/dev/null 2>&1 || true
 xcrun simctl install "${DEVICE_ID}" "${APP_PATH}"
 
-echo "Launching app"
-xcrun simctl launch "${DEVICE_ID}" "${BUNDLE_ID}" || true
+capture_scene() {
+  local scene_name="$1"
+  local output_path="$2"
+  local wait_seconds="$3"
 
-sleep 20
+  echo "Launching scene ${scene_name}"
+  xcrun simctl terminate "${DEVICE_ID}" "${BUNDLE_ID}" >/dev/null 2>&1 || true
+  xcrun simctl launch "${DEVICE_ID}" "${BUNDLE_ID}" --screenshot-mode --screenshot-scene "${scene_name}" >/dev/null
+  sleep "${wait_seconds}"
 
-echo "Capturing screenshot to ${SCREENSHOT_PATH}"
-xcrun simctl io "${DEVICE_ID}" screenshot "${SCREENSHOT_PATH}"
+  echo "Capturing screenshot to ${output_path}"
+  xcrun simctl io "${DEVICE_ID}" screenshot "${output_path}"
+}
 
-echo "Screenshot created at ${SCREENSHOT_PATH}"
+capture_scene "home" "docs/screenshots/home.png" 18
+capture_scene "calendar" "docs/screenshots/calendar.png" 16
+capture_scene "profile" "docs/screenshots/profile.png" 16
+capture_scene "teamInfo" "docs/screenshots/team-info.png" 18
+capture_scene "addTeam" "docs/screenshots/add-team.png" 16
+
+echo "Screenshots created in docs/screenshots/"

@@ -7,6 +7,12 @@ final class ScoreBoardViewModel: ObservableObject {
     @Published private(set) var summaryError: String?
 
     func fetchScoreBoard() {
+        if ScreenshotConfiguration.isEnabled {
+            sb = ScreenshotDemoData.scoreboard
+            messageError = nil
+            return
+        }
+
         NFLService.fetchGameScoreboard { result in
             switch result {
             case .failure(let error):
@@ -25,6 +31,12 @@ final class ScoreBoardViewModel: ObservableObject {
     }
     
     func fetchSummary(eventId: String) {
+        if ScreenshotConfiguration.isEnabled {
+            summary = nil
+            summaryError = nil
+            return
+        }
+
         NFLService.fetchSummary(eventId: eventId) { result in
             DispatchQueue.main.async {
                 switch result {

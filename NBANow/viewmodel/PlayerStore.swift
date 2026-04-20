@@ -12,9 +12,15 @@ final class PlayerStore: ObservableObject {
 
     private let storage = DefaultStorage.shared
     private let maxPlayers = 5
+    private let usesPersistentStorage: Bool
 
-    init() {
-        players = storage.loadCreatedPlayers()
+    init(seededPlayers: [CreatedPlayer] = [], usesPersistentStorage: Bool = true) {
+        self.usesPersistentStorage = usesPersistentStorage
+        if seededPlayers.isEmpty && usesPersistentStorage {
+            players = storage.loadCreatedPlayers()
+        } else {
+            players = seededPlayers
+        }
     }
 
     func createPlayer(
@@ -43,12 +49,16 @@ final class PlayerStore: ObservableObject {
         )
 
         players.append(newPlayer)
-        storage.saveCreatedPlayers(players)
+        if usesPersistentStorage {
+            storage.saveCreatedPlayers(players)
+        }
         return nil
     }
 
     func remove(id: String) {
         players.removeAll { $0.id == id }
-        storage.saveCreatedPlayers(players)
+        if usesPersistentStorage {
+            storage.saveCreatedPlayers(players)
+        }
     }
 }
